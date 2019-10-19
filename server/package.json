@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev src/index.ts"
+    "start": "ts-node-dev src/index.ts",
+    "initialize-db": "ts-node src/db/sqlite3.ts",
+    "seed": "ts-node src/db/main.ts"
   },
   "devDependencies": {
     "@types/eslint": "^6.1.2",

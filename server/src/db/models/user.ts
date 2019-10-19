@@ -44,6 +44,8 @@ export default class User extends Model {
       {
         tableName: 'users',
         underscored: true,
+        createdAt: false,
+        updatedAt: false,
         sequelize,
       },
     );

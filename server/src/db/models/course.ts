@@ -63,6 +63,8 @@ export default class Courses extends Model {
       {
         tableName: TABLE_NAME,
         underscored: true,
+        createdAt: false,
+        updatedAt: false,
         sequelize,
       },
     );
