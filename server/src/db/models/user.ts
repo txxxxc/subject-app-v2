@@ -12,6 +12,7 @@ export default class User extends Model {
 
   public updated_at!: Date;
 
+  // 初期化
   public static initialize(sequelize: Sequelize) {
     this.init(
       {
