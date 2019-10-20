@@ -2,15 +2,18 @@ import { DataSource } from 'apollo-datasource';
 import { Model } from 'sequelize';
 import { DB } from '../../types/db/index';
 
-type User = {
+type Course = {
   id: number;
-  email: string;
-  name: string;
+  course_name: string;
+  block: string;
+  teacher_name: string;
+  room: string;
+  is_compulsory: boolean;
   created_at: Date;
   updated_at: Date;
 };
 
-export default class UserAPI extends DataSource {
+export default class CourseAPI extends DataSource {
   private store: DB;
 
   constructor(store: DB) {
@@ -18,11 +21,11 @@ export default class UserAPI extends DataSource {
     this.store = store;
   }
 
-  async findUser(): Promise<User> {
-    const result: User = await this.store.User.findOne({
+  async test(): Promise<Course> {
+    const result: Course = await this.store.Course.findOne({
       where: { id: 1 },
-    }).then((project: Model) => {
-      return project.get();
+    }).then((value: Model) => {
+      return value.get();
     });
 
     return result;

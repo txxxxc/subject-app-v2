@@ -3,11 +3,13 @@ import { ApolloServer } from 'apollo-server-express';
 import { resolvers } from './resolvers';
 import { typeDefs } from './schema';
 import UserAPI from './datasources/user';
+import CourseAPI from './datasources/course';
 import store from './db/models/index';
 
 // resolverのcontextからデータにアクセスできるようにUserAPIをここで初期化
 const dataSources = () => ({
   userAPI: new UserAPI(store),
+  courseAPI: new CourseAPI(store),
 });
 
 // こっから初期化

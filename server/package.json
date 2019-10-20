@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node-dev src/index.ts",
     "initialize-db": "ts-node src/db/sqlite3.ts",
-    "seed": "ts-node src/db/main.ts"
+    "seed": "ts-node src/db/seed.ts"
   },
   "devDependencies": {
     "@types/eslint": "^6.1.2",
