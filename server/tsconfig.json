@@ -14,9 +14,9 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "db": ["types/db"]
+      "db": ["src/types/db"]
     }
   },
   "compileOnSave": true,
-  "include": ["src", "types"]
+  "include": ["src", "src/types"]
 }

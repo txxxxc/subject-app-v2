@@ -1,8 +1,8 @@
 export const resolvers = {
   Query: {
-    findUser: (_: any, __: any, { dataSources }: { dataSources: any }) =>
+    findUser: (_: string, __: string, { dataSources }: { dataSources: any }) =>
       dataSources.userAPI.findUser(),
-    test: (_: any, __: any, { dataSources }: { dataSources: any }) =>
+    test: (_: string, __: string, { dataSources }: { dataSources: any }) =>
       dataSources.courseAPI.test(),
   },
 };

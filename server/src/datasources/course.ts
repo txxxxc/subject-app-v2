@@ -1,6 +1,6 @@
 import { DataSource } from 'apollo-datasource';
 import { Model } from 'sequelize';
-import { DB } from '../../types/db/index';
+import { DB } from '../types/db/index';
 
 type Course = {
   id: number;
