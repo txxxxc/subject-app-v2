@@ -11,5 +11,8 @@
       ]
     },
     "./graphql.schema.json": { "plugins": ["introspection"] }
+  },
+  "config": {
+    "addUnderscoreToArgsType": true
   }
 }

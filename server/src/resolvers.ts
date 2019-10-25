@@ -1,8 +1,14 @@
-export const resolvers = {
-  Query: {
-    findUser: (_: string, __: string, { dataSources }: { dataSources: any }) =>
-      dataSources.userAPI.findUser(),
-    test: (_: string, __: string, { dataSources }: { dataSources: any }) =>
-      dataSources.courseAPI.test(),
+import { QueryResolvers } from './types/generated';
+
+export const resolvers: QueryResolvers = {
+  async findUser(_root, args, context) {
+    const { dataSources } = await context;
+
+    return dataSources.userAPI.findUser();
+  },
+  async test(_root, args, context) {
+    const { dataSources } = await context;
+
+    return dataSources.courseAPI.test();
   },
 };

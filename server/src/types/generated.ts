@@ -1,51 +1,52 @@
-import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  GraphQLResolveInfo,
+  GraphQLScalarType,
+  GraphQLScalarTypeConfig,
+} from 'graphql';
+
 export type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string,
-  String: string,
-  Boolean: boolean,
-  Int: number,
-  Float: number,
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
   /** The `Upload` scalar type represents a file upload. */
-  Upload: any,
+  Upload: any;
 };
-
-
 export enum CacheControlScope {
   Public = 'PUBLIC',
-  Private = 'PRIVATE'
+  Private = 'PRIVATE',
 }
 
 export type Course = {
-   __typename?: 'Course',
-  id: Scalars['ID'],
-  course_name?: Maybe<Scalars['String']>,
-  block?: Maybe<Scalars['String']>,
-  teacher_name?: Maybe<Scalars['String']>,
-  room?: Maybe<Scalars['String']>,
-  is_compulsory?: Maybe<Scalars['Boolean']>,
-  created_at?: Maybe<Scalars['Int']>,
-  updated_at?: Maybe<Scalars['Int']>,
+  __typename?: 'Course';
+  id: Scalars['ID'];
+  course_name?: Maybe<Scalars['String']>;
+  block?: Maybe<Scalars['String']>;
+  teacher_name?: Maybe<Scalars['String']>;
+  room?: Maybe<Scalars['String']>;
+  is_compulsory?: Maybe<Scalars['Boolean']>;
+  created_at?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['Int']>;
 };
 
 export type Query = {
-   __typename?: 'Query',
-  findUser?: Maybe<User>,
-  test?: Maybe<Course>,
+  __typename?: 'Query';
+  findUser?: Maybe<User>;
+  test?: Maybe<Course>;
 };
-
 
 export type User = {
-   __typename?: 'User',
-  id: Scalars['ID'],
-  email?: Maybe<Scalars['String']>,
-  name?: Maybe<Scalars['String']>,
-  created_at?: Maybe<Scalars['Int']>,
-  updated_at?: Maybe<Scalars['Int']>,
+  __typename?: 'User';
+  id: Scalars['ID'];
+  email?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['Int']>;
 };
-
-
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
@@ -53,9 +54,8 @@ export type ResolverFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => Promise<TResult> | TResult;
-
 
 export type StitchingResolver<TResult, TParent, TContext, TArgs> = {
   fragment: string;
@@ -70,19 +70,35 @@ export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => AsyncIterator<TResult> | Promise<AsyncIterator<TResult>>;
 
 export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => TResult | Promise<TResult>;
 
-export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<{ [key in TKey]: TResult }, TParent, TContext, TArgs>;
-  resolve?: SubscriptionResolveFn<TResult, { [key in TKey]: TResult }, TContext, TArgs>;
+export interface SubscriptionSubscriberObject<
+  TResult,
+  TKey extends string,
+  TParent,
+  TContext,
+  TArgs
+> {
+  subscribe: SubscriptionSubscribeFn<
+    { [key in TKey]: TResult },
+    TParent,
+    TContext,
+    TArgs
+  >;
+  resolve?: SubscriptionResolveFn<
+    TResult,
+    { [key in TKey]: TResult },
+    TContext,
+    TArgs
+  >;
 }
 
 export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
@@ -90,108 +106,155 @@ export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
   resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>;
 }
 
-export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> =
+export type SubscriptionObject<
+  TResult,
+  TKey extends string,
+  TParent,
+  TContext,
+  TArgs
+> =
   | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
   | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
 
-export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> =
-  | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
+export type SubscriptionResolver<
+  TResult,
+  TKey extends string,
+  TParent = {},
+  TContext = {},
+  TArgs = {}
+> =
+  | ((
+      ...args: any[]
+    ) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
   | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
 
 export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   parent: TParent,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => Maybe<TTypes>;
 
 export type NextResolverFn<T> = () => Promise<T>;
 
-export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
+export type DirectiveResolverFn<
+  TResult = {},
+  TParent = {},
+  TContext = {},
+  TArgs = {}
+> = (
   next: NextResolverFn<TResult>,
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => TResult | Promise<TResult>;
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Query: ResolverTypeWrapper<{}>,
-  User: ResolverTypeWrapper<User>,
-  ID: ResolverTypeWrapper<Scalars['ID']>,
-  String: ResolverTypeWrapper<Scalars['String']>,
-  Int: ResolverTypeWrapper<Scalars['Int']>,
-  Course: ResolverTypeWrapper<Course>,
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
-  CacheControlScope: CacheControlScope,
-  Upload: ResolverTypeWrapper<Scalars['Upload']>,
+  Query: ResolverTypeWrapper<{}>;
+  User: ResolverTypeWrapper<User>;
+  ID: ResolverTypeWrapper<Scalars['ID']>;
+  String: ResolverTypeWrapper<Scalars['String']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  Course: ResolverTypeWrapper<Course>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  CacheControlScope: CacheControlScope;
+  Upload: ResolverTypeWrapper<Scalars['Upload']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Query: {},
-  User: User,
-  ID: Scalars['ID'],
-  String: Scalars['String'],
-  Int: Scalars['Int'],
-  Course: Course,
-  Boolean: Scalars['Boolean'],
-  CacheControlScope: CacheControlScope,
-  Upload: Scalars['Upload'],
+  Query: {};
+  User: User;
+  ID: Scalars['ID'];
+  String: Scalars['String'];
+  Int: Scalars['Int'];
+  Course: Course;
+  Boolean: Scalars['Boolean'];
+  CacheControlScope: CacheControlScope;
+  Upload: Scalars['Upload'];
 };
 
-export type CacheControlDirectiveResolver<Result, Parent, ContextType = any, Args = {   maxAge?: Maybe<Maybe<Scalars['Int']>>,
-  scope?: Maybe<Maybe<CacheControlScope>> }> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type CacheControlDirectiveResolver<
+  Result,
+  Parent,
+  ContextType = any,
+  Args = {
+    maxAge?: Maybe<Maybe<Scalars['Int']>>;
+    scope?: Maybe<Maybe<CacheControlScope>>;
+  }
+> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type CourseResolvers<ContextType = any, ParentType extends ResolversParentTypes['Course'] = ResolversParentTypes['Course']> = {
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
-  course_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  block?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  teacher_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  room?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  is_compulsory?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
-  created_at?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
-  updated_at?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
+export type CourseResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Course'] = ResolversParentTypes['Course']
+> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  course_name?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  block?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  teacher_name?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  room?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  is_compulsory?: Resolver<
+    Maybe<ResolversTypes['Boolean']>,
+    ParentType,
+    ContextType
+  >;
+  created_at?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  updated_at?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
 };
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  findUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>,
-  test?: Resolver<Maybe<ResolversTypes['Course']>, ParentType, ContextType>,
+export type QueryResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
+> = {
+  findUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  test?: Resolver<Maybe<ResolversTypes['Course']>, ParentType, ContextType>;
 };
 
-export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
-  name: 'Upload'
+export interface UploadScalarConfig
+  extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
+  name: 'Upload';
 }
 
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
-  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  created_at?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
-  updated_at?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
+export type UserResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']
+> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  created_at?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  updated_at?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
-  Course?: CourseResolvers<ContextType>,
-  Query?: QueryResolvers<ContextType>,
-  Upload?: GraphQLScalarType,
-  User?: UserResolvers<ContextType>,
+  Course?: CourseResolvers<ContextType>;
+  Query?: QueryResolvers<ContextType>;
+  Upload?: GraphQLScalarType;
+  User?: UserResolvers<ContextType>;
 };
-
 
 /**
  * @deprecated
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
-*/
+ */
 export type IResolvers<ContextType = any> = Resolvers<ContextType>;
 export type DirectiveResolvers<ContextType = any> = {
-  cacheControl?: CacheControlDirectiveResolver<any, any, ContextType>,
+  cacheControl?: CacheControlDirectiveResolver<any, any, ContextType>;
 };
 
-
 /**
-* @deprecated
-* Use "DirectiveResolvers" root object instead. If you wish to get "IDirectiveResolvers", add "typesPrefix: I" to your config.
-*/
-export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<ContextType>;
-import gql from 'graphql-tag';
+ * @deprecated
+ * Use "DirectiveResolvers" root object instead. If you wish to get "IDirectiveResolvers", add "typesPrefix: I" to your config.
+ */
+export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<
+  ContextType
+>;
