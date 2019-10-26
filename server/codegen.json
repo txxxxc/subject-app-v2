@@ -13,6 +13,7 @@
     "./graphql.schema.json": { "plugins": ["introspection"] }
   },
   "config": {
-    "addUnderscoreToArgsType": true
+    "addUnderscoreToArgsType": true,
+    "useIndexSignature": true
   }
 }
