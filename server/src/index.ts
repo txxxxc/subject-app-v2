@@ -1,5 +1,8 @@
 import Express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import { IResolvers } from 'graphql-tools';
+
+// import { makeExecutableSchema, IResolvers } from 'graphql-tools';
 import { resolvers } from './resolvers';
 import { typeDefs } from './schema';
 import UserAPI from './datasources/user';
@@ -12,8 +15,17 @@ const dataSources = () => ({
   courseAPI: new CourseAPI(store),
 });
 
+// const schema = makeExecutableSchema({
+//   typeDefs,
+//   resolvers: resolvers as IResolvers,
+// });
+
 // こっから初期化
-const server = new ApolloServer({ typeDefs, resolvers, dataSources });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers: resolvers as IResolvers,
+  dataSources,
+});
 
 const app = Express();
 
