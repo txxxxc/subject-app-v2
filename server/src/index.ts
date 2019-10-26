@@ -1,7 +1,5 @@
 import Express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import { IResolvers } from 'graphql-tools';
-
 // import { makeExecutableSchema, IResolvers } from 'graphql-tools';
 import { resolvers } from './resolvers';
 import { typeDefs } from './schema';
@@ -23,7 +21,7 @@ const dataSources = () => ({
 // こっから初期化
 const server = new ApolloServer({
   typeDefs,
-  resolvers: resolvers as IResolvers,
+  resolvers: resolvers as any,
   dataSources,
 });
 

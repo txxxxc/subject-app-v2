@@ -1,6 +1,6 @@
-import { QueryResolvers, User, Course } from './types/generated';
+import { QueryResolvers, Resolvers, User, Course } from './types/generated';
 
-export const resolvers: QueryResolvers = {
+const Query: QueryResolvers = {
   async test(_root, args, context) {
     const { dataSources } = await context;
 
@@ -14,4 +14,8 @@ export const resolvers: QueryResolvers = {
 
     return result;
   },
+};
+
+export const resolvers: Resolvers = {
+  Query,
 };
