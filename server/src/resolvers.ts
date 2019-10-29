@@ -1,20 +1,26 @@
 import { QueryResolvers, Resolvers, User, Course } from './types/generated';
 
 const Query: QueryResolvers = {
-  async test(_root, args, context) {
+  async test(_root, _, context) {
     const { dataSources } = await context;
-
     const result: Course = dataSources.courseAPI.test();
 
     return result;
   },
-  async findUser(_root, args, context) {
+  async findUser(_root, _, context) {
     const { dataSources } = await context;
     const result: User = dataSources.userAPI.findUser();
 
     return result;
   },
 };
+
+// const Search: SearchResolvers = {
+//   async searchCoursesByName(_root, args, context) {
+//     const { dataSources } = await context;
+//     const result: Course = dataSources.courseAPI.searchCoursesByName(args.name)
+//   },
+// };
 
 export const resolvers: Resolvers = {
   Query,
