@@ -4,9 +4,9 @@ export const typeDefs = gql`
   type Query {
     findUser: User!
     test: Course!
-    searchCoursesByName(course_name: String): [Course]
-    searchCoursesByTeacher(teacher_name: String): [Course]
-    searchCoursesByBlock(block: String): [Course]
+    searchCoursesByName(course_name: String!): [Course]
+    searchCoursesByTeacher(teacher_name: String!): [Course]
+    searchCoursesByBlock(block: String!): [Course]
     searchCoursesByCompulsory: [Course]
   }
   type User {

@@ -15,7 +15,7 @@ const Query: QueryResolvers = {
   },
   async searchCoursesByName(_root, args, context) {
     const { dataSources } = await context;
-    const result = dataSources.courseAPI.searchCoursesByName(args.course_name!);
+    const result = dataSources.courseAPI.searchCoursesByName(args.course_name);
 
     return result;
   },
