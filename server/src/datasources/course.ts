@@ -3,15 +3,15 @@ import { DataSource } from 'apollo-datasource';
 import { Model } from 'sequelize';
 import { DB } from '../types/db/index';
 
-type Course = {
-  id: number;
+export type Course = {
+  id: string;
   course_name: string;
   block: string;
   teacher_name: string;
   room: string;
   is_compulsory: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at: number;
+  updated_at: number;
 };
 
 // 作るべきもの

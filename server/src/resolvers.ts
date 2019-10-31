@@ -1,15 +1,15 @@
-import { QueryResolvers, Resolvers, User, Course } from './types/generated';
-
+import { QueryResolvers, Resolvers } from './types/generated';
+// User, Course;
 const Query: QueryResolvers = {
   async test(_root, _, context) {
     const { dataSources } = await context;
-    const result: Course = dataSources.courseAPI.test();
+    const result = dataSources.courseAPI.test();
 
     return result;
   },
   async findUser(_root, _, context) {
     const { dataSources } = await context;
-    const result: User = dataSources.userAPI.findUser();
+    const result = dataSources.userAPI.findUser();
 
     return result;
   },

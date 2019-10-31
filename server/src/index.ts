@@ -8,7 +8,7 @@ import CourseAPI from './datasources/course';
 import store from './db/models/index';
 
 // resolverのcontextからデータにアクセスできるようにUserAPIをここで初期化
-export const dataSources = () => ({
+const dataSources = () => ({
   userAPI: new UserAPI(store),
   courseAPI: new CourseAPI(store),
 });
