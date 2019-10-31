@@ -50,37 +50,43 @@ export default class CourseAPI extends DataSource {
     return result;
   }
 
-  async searchCoursesByTeacher(teacher_name: string): Promise<Course> {
-    const result: Course = await this.store.Course.findAll({
+  async searchCoursesByTeacher(teacher_name: string): Promise<Course[]> {
+    const result: Course[] = await this.store.Course.findAll({
       where: {
         teacher_name,
       },
-    }).then((value: Array<Model>) => {
-      return value;
+    }).then((values: Array<Model>) => {
+      values.map((el: Model) => el.get());
+
+      return values;
     });
 
     return result;
   }
 
-  async searchCoursesByBlock(block: string): Promise<Course> {
-    const result: Course = await this.store.Course.findAll({
+  async searchCoursesByBlock(block: string): Promise<Course[]> {
+    const result: Course[] = await this.store.Course.findAll({
       where: {
         block,
       },
-    }).then((value: Array<Model>) => {
-      return value;
+    }).then((values: Array<Model>) => {
+      values.map((el: Model) => el.get());
+
+      return values;
     });
 
     return result;
   }
 
-  async searchCoursesByCompulsory(): Promise<Course> {
-    const result: Course = await this.store.Course.findAll({
+  async searchCoursesByCompulsory(): Promise<Course[]> {
+    const result: Course[] = await this.store.Course.findAll({
       where: {
         is_compulsory: true,
       },
-    }).then((value: Array<Model>) => {
-      return value;
+    }).then((values: Array<Model>) => {
+      values.map((el: Model) => el.get());
+
+      return values;
     });
 
     return result;

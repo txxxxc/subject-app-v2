@@ -19,6 +19,26 @@ const Query: QueryResolvers = {
 
     return result;
   },
+  async searchCoursesByTeacher(_root, args, context) {
+    const { dataSources } = await context;
+    const result = dataSources.courseAPI.searchCoursesByTeacher(
+      args.teacher_name,
+    );
+
+    return result;
+  },
+  async searchCoursesByBlock(_root, args, context) {
+    const { dataSources } = await context;
+    const result = dataSources.courseAPI.searchCoursesByBlock(args.block);
+
+    return result;
+  },
+  async searchCoursesByCompulsory(_root, args, context) {
+    const { dataSources } = await context;
+    const result = dataSources.courseAPI.searchCoursesByCompulsory();
+
+    return result;
+  },
 };
 
 export const resolvers: Resolvers = {
