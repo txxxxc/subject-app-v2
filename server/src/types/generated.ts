@@ -37,26 +37,21 @@ export type Query = {
   __typename?: 'Query';
   findUser: User;
   test: Course;
-  search: Search;
+  searchCoursesByName?: Maybe<Array<Maybe<Course>>>;
+  searchCoursesByTeacher?: Maybe<Array<Maybe<Course>>>;
+  searchCoursesByBlock?: Maybe<Array<Maybe<Course>>>;
+  searchCoursesByCompulsory?: Maybe<Array<Maybe<Course>>>;
 };
 
-export type Search = {
-  __typename?: 'Search';
-  searchCoursesByName: Array<Maybe<Course>>;
-  searchCoursesByTeacher: Array<Maybe<Course>>;
-  searchCoursesByBlock: Array<Maybe<Course>>;
-  searchCoursesByCompulsory: Array<Maybe<Course>>;
+export type Query_SearchCoursesByNameArgs = {
+  course_name?: Maybe<Scalars['String']>;
 };
 
-export type Search_SearchCoursesByNameArgs = {
-  name?: Maybe<Scalars['String']>;
-};
-
-export type Search_SearchCoursesByTeacherArgs = {
+export type Query_SearchCoursesByTeacherArgs = {
   teacher_name?: Maybe<Scalars['String']>;
 };
 
-export type Search_SearchCoursesByBlockArgs = {
+export type Query_SearchCoursesByBlockArgs = {
   block?: Maybe<Scalars['String']>;
 };
 
@@ -182,7 +177,6 @@ export type ResolversTypes = ResolversObject<{
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Course: ResolverTypeWrapper<Course>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  Search: ResolverTypeWrapper<Search>;
   CacheControlScope: CacheControlScope;
   Upload: ResolverTypeWrapper<Scalars['Upload']>;
 }>;
@@ -196,7 +190,6 @@ export type ResolversParentTypes = ResolversObject<{
   Int: Scalars['Int'];
   Course: Course;
   Boolean: Scalars['Boolean'];
-  Search: Search;
   CacheControlScope: CacheControlScope;
   Upload: Scalars['Upload'];
 }>;
@@ -231,33 +224,26 @@ export type QueryResolvers<
 > = ResolversObject<{
   findUser?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   test?: Resolver<ResolversTypes['Course'], ParentType, ContextType>;
-  search?: Resolver<ResolversTypes['Search'], ParentType, ContextType>;
-}>;
-
-export type SearchResolvers<
-  ContextType = MyContext,
-  ParentType extends ResolversParentTypes['Search'] = ResolversParentTypes['Search']
-> = ResolversObject<{
   searchCoursesByName?: Resolver<
-    Array<Maybe<ResolversTypes['Course']>>,
+    Maybe<Array<Maybe<ResolversTypes['Course']>>>,
     ParentType,
     ContextType,
-    Search_SearchCoursesByNameArgs
+    Query_SearchCoursesByNameArgs
   >;
   searchCoursesByTeacher?: Resolver<
-    Array<Maybe<ResolversTypes['Course']>>,
+    Maybe<Array<Maybe<ResolversTypes['Course']>>>,
     ParentType,
     ContextType,
-    Search_SearchCoursesByTeacherArgs
+    Query_SearchCoursesByTeacherArgs
   >;
   searchCoursesByBlock?: Resolver<
-    Array<Maybe<ResolversTypes['Course']>>,
+    Maybe<Array<Maybe<ResolversTypes['Course']>>>,
     ParentType,
     ContextType,
-    Search_SearchCoursesByBlockArgs
+    Query_SearchCoursesByBlockArgs
   >;
   searchCoursesByCompulsory?: Resolver<
-    Array<Maybe<ResolversTypes['Course']>>,
+    Maybe<Array<Maybe<ResolversTypes['Course']>>>,
     ParentType,
     ContextType
   >;
@@ -282,7 +268,6 @@ export type UserResolvers<
 export type Resolvers<ContextType = MyContext> = ResolversObject<{
   Course?: CourseResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
-  Search?: SearchResolvers<ContextType>;
   Upload?: GraphQLScalarType;
   User?: UserResolvers<ContextType>;
 }>;

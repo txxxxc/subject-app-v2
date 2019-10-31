@@ -35,13 +35,16 @@ export default class CourseAPI extends DataSource {
     return result;
   }
 
-  async searchCoursesByName(name: string): Promise<Course> {
-    const result: Course = await this.store.Course.findAll({
+  async searchCoursesByName(course_name: string): Promise<Course[]> {
+    const result: Course[] = await this.store.Course.findAll({
       where: {
-        name,
+        course_name,
       },
-    }).them((value: Model) => {
-      return value.get();
+    }).then((values: Array<Model>) => {
+      console.log(values);
+      values.map((el: Model) => el.get());
+
+      return values;
     });
 
     return result;
@@ -52,8 +55,8 @@ export default class CourseAPI extends DataSource {
       where: {
         teacher_name,
       },
-    }).them((value: Model) => {
-      return value.get();
+    }).then((value: Array<Model>) => {
+      return value;
     });
 
     return result;
@@ -64,8 +67,8 @@ export default class CourseAPI extends DataSource {
       where: {
         block,
       },
-    }).them((value: Model) => {
-      return value.get();
+    }).then((value: Array<Model>) => {
+      return value;
     });
 
     return result;
@@ -76,8 +79,8 @@ export default class CourseAPI extends DataSource {
       where: {
         is_compulsory: true,
       },
-    }).them((value: Model) => {
-      return value.get();
+    }).then((value: Array<Model>) => {
+      return value;
     });
 
     return result;

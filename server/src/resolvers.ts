@@ -13,14 +13,13 @@ const Query: QueryResolvers = {
 
     return result;
   },
-};
+  async searchCoursesByName(_root, args, context) {
+    const { dataSources } = await context;
+    const result = dataSources.courseAPI.searchCoursesByName(args.course_name!);
 
-// const Search: SearchResolvers = {
-//   async searchCoursesByName(_root, args, context) {
-//     const { dataSources } = await context;
-//     const result: Course = dataSources.courseAPI.searchCoursesByName(args.name)
-//   },
-// };
+    return result;
+  },
+};
 
 export const resolvers: Resolvers = {
   Query,
