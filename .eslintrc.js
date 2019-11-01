@@ -122,7 +122,7 @@ module.exports = {
     'import/resolver': {
       node: {
         extensions: ['.js', '.ts'],
-        paths: ['src'],
+        // paths: ['src'],
       },
     },
   },
