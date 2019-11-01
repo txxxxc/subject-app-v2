@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "initialize-db": "ts-node src/db/sqlite3.ts",
-    "seed": "ts-node src/db/seed.ts",
-    "generate": "graphql-codegen --config codegen.json"
+    "seed": "ts-node src/db/seed.ts"
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.43"
