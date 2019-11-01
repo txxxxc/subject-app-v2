@@ -3,11 +3,11 @@ import { Model } from 'sequelize';
 import { DB } from '../types/db/index';
 
 type User = {
-  id: number;
+  id: string;
   email: string;
   name: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: number;
+  updated_at: number;
 };
 
 export default class UserAPI extends DataSource {

@@ -2,6 +2,11 @@
   "overwrite": true,
   "schema": "http://localhost:4000/graphql",
   "documents": null,
+  "config": {
+    "addUnderscoreToArgsType": true,
+    "useIndexSignature": true,
+    "contextType": "./datasources#MyContext"
+  },
   "generates": {
     "src/types/generated.ts": {
       "plugins": [
@@ -11,9 +16,5 @@
       ]
     },
     "./graphql.schema.json": { "plugins": ["introspection"] }
-  },
-  "config": {
-    "addUnderscoreToArgsType": true,
-    "useIndexSignature": true
   }
 }
