@@ -12,7 +12,9 @@
     "baseUrl": "./",
     "paths": {
       "db": ["src/types/db"]
-    }
+    },
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "compileOnSave": true,
   "include": ["src", "src/types"]
