@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 
-export const hoge = new sqlite3.Database(
+export const db = new sqlite3.Database(
   './database.db',
   // ReadとWriteを許可。且つ、databaseが存在しなかった場合は作成
   // eslint-disable-next-line no-bitwise
