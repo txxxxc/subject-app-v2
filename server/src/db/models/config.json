@@ -1,7 +1,0 @@
-{
-  "database": "hoge",
-  "username": "root",
-  "password": "",
-  "storage": "./database.db",
-  "dialect": "sqlite"
-}
