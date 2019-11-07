@@ -2,13 +2,13 @@ overwrite: true
 schema:
   - ./graphql/schema.graphql
 generates:
-  ./server/src/types/gen/graphql-resolver-types.ts:
+  ./future-server/src/types/gen/graphql-resolver-types.ts:
     plugins:
       - typescript
       - typescript-resolvers
     config:
       addUnderscoreToArgsType: true
-      contextType: ../datasources#MyContext
+      contextType: ../dataSource#DataSources
   ./graphql/schema.json:
     plugins:
       - introspection
