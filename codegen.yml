@@ -2,7 +2,7 @@ overwrite: true
 schema:
   - ./graphql/schema.graphql
 generates:
-  ./future-server/src/types/gen/graphql-resolver-types.ts:
+  ./server/src/types/gen/graphql-resolver-types.ts:
     plugins:
       - typescript
       - typescript-resolvers
