@@ -6,3 +6,4 @@ dist
 *.log
 graphql/schema.json
 yarn.lock
+.env

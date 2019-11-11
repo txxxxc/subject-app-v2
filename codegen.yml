@@ -9,6 +9,15 @@ generates:
     config:
       addUnderscoreToArgsType: true
       contextType: ../dataSource#DataSources
+  ./client/gen/graphql-client-api.tsx:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withComponent: false
+      withHooks: true
+      withHOC: false
   ./graphql/schema.json:
     plugins:
       - introspection
