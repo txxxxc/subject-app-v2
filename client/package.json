@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js"
+    "dev": "webpack-dev-server --config ./webpack.config.js NODE_ENV=development",
+    "prod": "webpack-dev-server --config ./webpack.config.js NODE_ENV=production"
   },
   "dependencies": {
     "@material-ui/core": "^4.6.0",
