@@ -7,9 +7,10 @@ import path from 'path';
 const envPath = path.join(__dirname, '../../.env');
 dotenv.config({ path: envPath });
 
-const URL = (process.env.NODE_ENV = 'development'
-  ? process.env.DEV_URL
-  : process.env.PRODUCTION_URL);
+const URL =
+  process.env.NODE_ENV === 'development'
+    ? process.env.DEV_URL
+    : process.env.PRODUCTION_URL;
 
 console.log({ URL });
 

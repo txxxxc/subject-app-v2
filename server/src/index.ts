@@ -13,6 +13,11 @@ import { Course } from './entity/Course';
 const envPath = path.join(__dirname, '../../.env');
 dotenv.config({ path: envPath });
 
+const URL =
+  process.env.NODE_ENV === 'development'
+    ? process.env.DEV_URL
+    : process.env.PRODUCTION_URL;
+
 const typeDefs = fs
   .readFileSync(path.join(__dirname, '../../graphql/schema.graphql'))
   .toString();
@@ -39,7 +44,7 @@ app.get('/', (req, res) => {
 });
 
 setup().then(() => {
-  app.listen(process.env.PORT, () => {
-    console.log(`🚀 Server ready at http://localhost:${process.env.PORT}`);
+  app.listen(URL, () => {
+    console.log(`🚀 Server ready at ${URL}`);
   });
 });
