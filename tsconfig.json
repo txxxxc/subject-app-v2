@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "target": "es2018",
-    "module": "commonjs",
+    "outDir": "./dist",
+    "target": "es5",
+    "module": "es2015",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "sourceMap": true,
-    "noEmit": true,
-    "moduleResolution": "node",
-    "allowJs": true
+    "moduleResolution": "node"
   },
-  "exclude": ["node_modules", "gen", "migration"]
+  "exclude": ["node_modules", "gen"]
 }

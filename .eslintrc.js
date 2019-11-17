@@ -2,129 +2,120 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true,
+    node: true
   },
   extends: [
-    'airbnb-base',
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
-    'plugin:prettier/recommended',
-    'prettier',
-    'prettier/@typescript-eslint',
-    'prettier/standard',
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "prettier/standard"
   ],
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     // patch for https://github.com/typescript-eslint/typescript-eslint/issues/864
     createDefaultProgram: true,
     ecmaVersion: 2018,
-    project: './tsconfig.json',
-    sourceType: 'module',
+    project: "./tsconfig.json",
+    sourceType: "module"
   },
-  plugins: ['@typescript-eslint', 'import', 'prefer-arrow', 'prettier'],
+  plugins: ["@typescript-eslint", "import", "prefer-arrow", "prettier"],
   root: true,
   rules: {
     // eslint official
-    'linebreak-style': ['error', 'unix'],
-    'newline-before-return': 'error',
-    'no-console': 'warn',
-    'no-continue': 'off',
-    quotes: ['error', 'single', { avoidEscape: true }],
-    'require-yield': 'error',
-    semi: ['error', 'always'],
+    "linebreak-style": ["error", "unix"],
+    "newline-before-return": "error",
+    "no-console": "warn",
+    "no-continue": "off",
+    quotes: ["error", "single", { avoidEscape: true }],
+    "require-yield": "error",
+    semi: ["error", "always"],
 
     // @typescript-eslint
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-member-accessibility': 'off',
-    indent: 'off',
-    '@typescript-eslint/indent': 'off',
-    '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-    '@typescript-eslint/no-unused-vars': 'error',
-    '@typescript-eslint/prefer-interface': 'off',
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    indent: "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-unnecessary-type-assertion": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/prefer-interface": "off",
 
     // airbnb
-    'no-restricted-syntax': [
-      'error',
+    "no-restricted-syntax": [
+      "error",
       {
-        selector: 'ForInStatement',
+        selector: "ForInStatement",
         message:
-          'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
+          "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
       },
       {
-        selector: 'LabeledStatement',
+        selector: "LabeledStatement",
         message:
-          'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
+          "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
       },
       {
-        selector: 'WithStatement',
+        selector: "WithStatement",
         message:
-          '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
-      },
+          "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+      }
     ],
     // prefer-arrow
-    'prefer-arrow/prefer-arrow-functions': [
-      'error',
+    "prefer-arrow/prefer-arrow-functions": [
+      "error",
       {
         disallowPrototype: true,
         singleReturnOnly: true,
-        classPropertiesAllowed: false,
-      },
+        classPropertiesAllowed: false
+      }
     ],
 
     // import
-    'import/extensions': [
-      'error',
-      'always',
+    "import/extensions": [
+      "error",
+      "always",
       {
-        js: 'never',
-        ts: 'never',
-      },
+        js: "never",
+        ts: "never"
+      }
     ],
-    'import/no-extraneous-dependencies': [
-      'error',
+    "import/no-extraneous-dependencies": [
+      "error",
       {
-        devDependencies: [
-          '.storybook/**',
-          'stories/**',
-          '**/*/*.story.*',
-          '**/*/*.stories.*',
-          '**/__specs__/**',
-          '**/*/*.spec.*',
-          '**/__tests__/**',
-          '**/*/*.test.*',
-          'src/setupTests.*',
-        ],
-      },
+        devDependencies: true
+      }
     ],
-    'import/prefer-default-export': 'off',
+    "import/prefer-default-export": "off",
 
     // prettier
-    'prettier/prettier': [
-      'error',
+    "prettier/prettier": [
+      "error",
       {
         bracketSpacing: true,
         printWidth: 80,
-        semi: true,
         singleQuote: true,
-        trailingComma: 'all',
-        useTabs: false,
-      },
-    ],
+        trailingComma: "all",
+        useTabs: false
+      }
+    ]
   },
   settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
-    'import/resolver': {
+    "import/resolver": {
       node: {
-        extensions: ['.js', '.ts'],
-        // paths: ['src'],
+        extensions: [".js", ".ts"]
       },
-    },
-  },
+      webpack: {
+        extensions: [".js", ".ts"]
+      }
+    }
+  }
 };

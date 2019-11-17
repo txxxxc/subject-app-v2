@@ -4,7 +4,6 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 import { createApolloClient } from '../utils/createApolloClient';
 
-
 const client = createApolloClient();
 
 const App = () => (
