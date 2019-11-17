@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   mode: 'development',
   entry: './src/App.tsx',
   devtool: 'source-map',
+  externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[id].bundle.js',
@@ -13,7 +16,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'babel-loader',
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
       {
@@ -23,8 +26,8 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.js', '.ts', 'json'],
-    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    extensions: ['.tsx', '.ts', '.js', 'json'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   plugins: [
     new HtmlWebPackPlugin({

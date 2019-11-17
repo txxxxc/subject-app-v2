@@ -9,10 +9,8 @@ dotenv.config({ path: envPath });
 
 const URL =
   process.env.NODE_ENV === 'development'
-    ? process.env.DEV_URL
+    ? process.env.CLIENT_DEVELOPMENT_URL
     : process.env.PRODUCTION_URL;
-
-console.log({ URL });
 
 export const createApolloClient = () =>
   new ApolloClient({

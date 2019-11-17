@@ -85,8 +85,8 @@ module.exports = {
         ts: "never"
       }
     ],
-    'import/no-extraneous-dependencies': [
-      'error',
+    "import/no-extraneous-dependencies": [
+      "error",
       {
         devDependencies: true
       }
@@ -112,7 +112,9 @@ module.exports = {
     "import/resolver": {
       node: {
         extensions: [".js", ".ts"]
-        // paths: ['src'],
+      },
+      webpack: {
+        extensions: [".js", ".ts"]
       }
     }
   }

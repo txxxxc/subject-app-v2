@@ -15,7 +15,7 @@ dotenv.config({ path: envPath });
 
 const URL =
   process.env.NODE_ENV === 'development'
-    ? process.env.DEV_URL
+    ? process.env.SERVER_DEVELOPMENT_URL
     : process.env.PRODUCTION_URL;
 
 const typeDefs = fs

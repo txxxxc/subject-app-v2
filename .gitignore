@@ -4,4 +4,3 @@ data
 dist
 *.log
 graphql/schema.json
-.env
