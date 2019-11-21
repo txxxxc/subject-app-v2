@@ -25,7 +25,13 @@
     "project": "./tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "import", "prefer-arrow", "prettier"],
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "prefer-arrow",
+    "prettier",
+    "react"
+  ],
   "root": true,
   "rules": {
     "linebreak-style": ["error", "unix"],
@@ -70,7 +76,8 @@
       "always",
       {
         "js": "never",
-        "ts": "never"
+        "ts": "never",
+        "tsx": "never"
       }
     ],
     "import/no-extraneous-dependencies": [
@@ -92,6 +99,10 @@
       "webpack": {
         "extensions": [".js", ".ts", ".tsx"]
       }
+    },
+    "react": {
+      "pragma": "React",
+      "version": "detect"
     }
   }
 }
