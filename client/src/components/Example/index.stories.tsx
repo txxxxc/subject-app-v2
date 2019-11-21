@@ -7,7 +7,7 @@ import { withInfo } from '@storybook/addon-info';
 import Example from './example';
 
 storiesOf('Components', module)
-  .addDecorator(withInfo({ header: false }))
+  .addDecorator(withInfo({ inline: true }))
   .addDecorator(withKnobs)
   .add('Example', () => (
     <Example
