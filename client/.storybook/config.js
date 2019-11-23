@@ -13,7 +13,7 @@ function loadStories() {
   addDecorator(withInfo);
   addDecorator(withKnobs);
 
-  req.keys().forEach(req);
+  req.keys().forEach(filename => req(filename));
 }
 
 configure(loadStories, module);
