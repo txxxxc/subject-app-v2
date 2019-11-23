@@ -11,7 +11,8 @@ const ensureConnection = async () => {
     synchronize: false,
     logging: true,
   });
-  BaseEntity.useConnection(conn);
+  await BaseEntity.useConnection(conn);
+  await conn.runMigrations();
 };
 
 export default async () => {
