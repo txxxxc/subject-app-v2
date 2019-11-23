@@ -1,9 +1,10 @@
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
-import fs from 'fs';
+// import fs from 'fs';
 import path from 'path';
 import { getRepository } from 'typeorm';
 import dotenv from 'dotenv';
+import { importSchema } from 'graphql-import';
 
 import setup from './setup';
 import { resolvers } from './resolvers';
@@ -18,10 +19,12 @@ const URL =
     ? process.env.SERVER_DEVELOPMENT_URL
     : process.env.PRODUCTION_URL;
 
-const typeDefs = fs
-  .readFileSync(path.join(__dirname, '../../graphql/schema.graphql'))
-  .toString();
+const typeDefs = importSchema('src/schema.graphql');
+// const typeDefs = importSchema(path.join(__dirname, 'graphql/schema.graphql'));
 
+// const typeDefs = fs.readFileSync(text).toString();
+
+const PORT = 8000;
 const app = express();
 
 const context = () => ({
@@ -30,9 +33,7 @@ const context = () => ({
 });
 
 const apolloServer = new ApolloServer({
-  typeDefs: gql`
-    ${typeDefs}
-  `,
+  typeDefs,
   resolvers: resolvers as any,
   context,
 });
@@ -44,7 +45,7 @@ app.get('/', (req, res) => {
 });
 
 setup().then(() => {
-  app.listen(URL, () => {
+  app.listen(PORT, () => {
     console.log(`🚀 Server ready at ${URL}`);
   });
 });

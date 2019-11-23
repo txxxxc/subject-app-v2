@@ -1,9 +1,11 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "module": "commonjs",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": ["es2015", "esnext.asynciterable"]
+    "lib": ["es2015", "esnext.asynciterable"],
+    "esModuleInterop": true
   },
   "exclude": ["node_modules"]
 }

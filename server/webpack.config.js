@@ -2,19 +2,29 @@
 const path = require('path');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const nodeExternals = require('webpack-node-externals');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  target: 'node',
   entry: './src/index.ts',
+  target: 'node',
   devtool: 'inline-source-map',
   externals: [nodeExternals()],
   module: {
     rules: [
       {
         test: /\.ts$/,
-        use: 'ts-loader',
+        loader: 'ts-loader',
         exclude: /node_modules/,
+        options: {
+          configFile: 'tsconfig.json',
+        },
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
       },
     ],
   },
@@ -22,7 +32,13 @@ module.exports = {
     extensions: ['.ts', '.js'],
   },
   output: {
-    filename: 'bundle.server.js',
+    filename: 'server.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  devServer: {
+    publicPath: '/',
+    contentBase: path.resolve(__dirname, 'dist'),
+    port: 8000,
+  },
+  plugins: [new HtmlWebPackPlugin()],
 };

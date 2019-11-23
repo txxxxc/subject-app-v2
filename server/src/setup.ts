@@ -1,10 +1,10 @@
 import { createConnection, BaseEntity } from 'typeorm';
-import { root } from './paths';
+import path from 'path';
 
 const ensureConnection = async () => {
   const conn = await createConnection({
     type: 'sqlite',
-    database: `${root}/database.db`,
+    database: path.resolve(__dirname, '../database.db'),
     entities: ['src/entity/*.ts'],
     synchronize: false,
     logging: true,
