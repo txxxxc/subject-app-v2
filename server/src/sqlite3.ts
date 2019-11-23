@@ -17,5 +17,4 @@ export const db = new sqlite3.Database(
     }
   },
 );
-
 console.log(db);
