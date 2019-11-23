@@ -7,7 +7,7 @@
   "database": "database.db",
   "synchronize": true,
   "logging": false,
-  "entities": ["src/entity/**/*.ts"],
+  "entities": ["src/entity/**/*.ts", "dist/entity/*.js"],
   "migrations": ["src/migration/**/*.ts"],
   "cli": {
     "entitiesDir": "src/entity",

@@ -5,7 +5,7 @@ const ensureConnection = async () => {
   const conn = await createConnection({
     type: 'sqlite',
     database: path.resolve(__dirname, '../database.db'),
-    entities: ['src/entity/*.ts'],
+    entities: ['server.js'],
     synchronize: false,
     logging: true,
   });

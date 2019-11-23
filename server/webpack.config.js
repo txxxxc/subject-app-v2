@@ -17,9 +17,6 @@ module.exports = {
         test: /\.ts$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
-        options: {
-          configFile: 'tsconfig.json',
-        },
       },
       {
         test: /\.(graphql|gql)$/,
@@ -29,7 +26,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js', 'json'],
   },
   output: {
     filename: 'server.js',

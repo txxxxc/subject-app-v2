@@ -1,4 +1,4 @@
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer, gql } from 'apollo-server-express';
 import express from 'express';
 // import fs from 'fs';
 import path from 'path';
@@ -21,7 +21,6 @@ const URL =
 
 const typeDefs = importSchema('src/schema.graphql');
 // const typeDefs = importSchema(path.join(__dirname, 'graphql/schema.graphql'));
-
 // const typeDefs = fs.readFileSync(text).toString();
 
 const PORT = 8000;
@@ -33,7 +32,9 @@ const context = () => ({
 });
 
 const apolloServer = new ApolloServer({
-  typeDefs,
+  typeDefs: gql`
+    ${typeDefs}
+  `,
   resolvers: resolvers as any,
   context,
 });
