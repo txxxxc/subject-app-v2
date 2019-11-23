@@ -8,7 +8,7 @@ const ensureConnection = async () => {
     type: 'sqlite',
     database: path.resolve(__dirname, '../database.db'),
     entities: [User, Course],
-    synchronize: false,
+    synchronize: true,
     logging: true,
   });
   await BaseEntity.useConnection(conn);
