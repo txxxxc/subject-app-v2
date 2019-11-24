@@ -13,6 +13,9 @@ const ensureConnection = async () => {
   });
   await BaseEntity.useConnection(conn);
   await conn.runMigrations();
+  const userRepository = await conn.getRepository(User);
+  const result = await userRepository.find();
+  await console.log({ result });
 };
 
 export default async () => {
