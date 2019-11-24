@@ -6,18 +6,15 @@ import { Course } from './entity/Course';
 const ensureConnection = async () => {
   const conn = await createConnection({
     type: 'sqlite',
-    database: path.resolve(__dirname, '../database.db'),
+    database: path.resolve('database.db'),
     entities: [User, Course],
     synchronize: true,
     logging: true,
   });
   await BaseEntity.useConnection(conn);
   await conn.runMigrations();
-  const userRepository = await conn.getRepository(User);
-  const result = await userRepository.find();
-  await console.log({ result });
 };
 
 export default async () => {
-  ensureConnection();
+  await ensureConnection();
 };

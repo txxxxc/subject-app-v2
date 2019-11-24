@@ -1,6 +1,5 @@
 import { ApolloServer, gql } from 'apollo-server-express';
 import express from 'express';
-// import fs from 'fs';
 import path from 'path';
 import { getRepository } from 'typeorm';
 import dotenv from 'dotenv';
@@ -11,7 +10,7 @@ import { resolvers } from './resolvers';
 import { User } from './entity/User';
 import { Course } from './entity/Course';
 
-const envPath = path.join(__dirname, '../../.env');
+const envPath = path.resolve('../.env');
 dotenv.config({ path: envPath });
 
 const URL =
@@ -19,11 +18,7 @@ const URL =
     ? process.env.SERVER_DEVELOPMENT_URL
     : process.env.PRODUCTION_URL;
 
-const typeDefs = importSchema('src/schema.graphql');
-// const typeDefs = importSchema(path.join(__dirname, 'graphql/schema.graphql'));
-// const typeDefs = fs.readFileSync(text).toString();
-
-const PORT = 8000;
+const typeDefs = importSchema(path.resolve('../graphql/schema.graphql'));
 const app = express();
 
 const context = () => ({
@@ -46,7 +41,7 @@ app.get('/', (req, res) => {
 });
 
 setup().then(() => {
-  app.listen(PORT, () => {
+  app.listen(process.env.SERVER_DEVELOPMENT_PORT, () => {
     console.log(`🚀 Server ready at ${URL}`);
   });
 });
