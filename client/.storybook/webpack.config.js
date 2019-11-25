@@ -1,30 +1,24 @@
-module.exports = {
-  module: {
-    rules: [
+const path = require('path');
+module.exports = ({ config }) => {
+  config.module.rules.push({
+    test: /\.tsx?$/,
+    include: path.resolve(__dirname, '../src'),
+    use: [
       {
-        test: /\.css$/,
-        exclude: /node_modules(?!\/@storybook\/addon-info)/,
-        use: ['style-loader', 'css-loader'],
+        loader: require.resolve('react-docgen-typescript-loader'),
       },
       {
-        test: /\.(ts|tsx)$/,
-        use: [
-          {
-            loader: require.resolve('react-docgen-typescript-loader'),
-          },
-          {
-            loader: require.resolve('@storybook/source-loader'),
-            options: { parser: 'typescript' },
-          },
-        ],
+        loader: require.resolve('babel-loader'),
+        options: {
+          presets: [['react-app', { flow: false, typescript: true }]],
+        },
       },
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        loader: require.resolve('@storybook/source-loader'),
+        options: { parser: 'typescript' },
       },
     ],
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx'],
-  },
+  });
+  config.resolve.extensions.push('.ts', '.tsx');
+  return config;
 };

@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useState, useCallback, FC } from 'react';
 
 export interface ExampleProps {
   text: string;
@@ -7,7 +8,7 @@ export interface ExampleProps {
   action(): void;
 }
 
-const Example = (props: ExampleProps) => {
+export const Example: FC<ExampleProps> = props => {
   const { text, flag, action } = props;
   const [count, setCount] = useState(0);
   const countUp = useCallback(() => setCount(prev => prev + 1), []);
