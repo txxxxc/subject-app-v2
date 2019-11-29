@@ -36,8 +36,10 @@ const apolloServer = new ApolloServer({
 
 apolloServer.applyMiddleware({ app });
 
+app.use(express.static(path.resolve('../client/dist')));
+
 app.get('/', (req, res) => {
-  res.send('It works');
+  res.render('bundle');
 });
 
 setup().then(() => {
