@@ -5,15 +5,20 @@
   "repository": "https://github.com/Tanaka-Tomoya/subject-app-v2.git",
   "author": "Tanaka-Tomoya <tomoya2627@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "yarn": "1.x"
+  },
   "scripts": {
     "dev": "run-p dev:client dev:server dev:codegen",
     "dev:client": "cd client && yarn dev",
     "dev:server": "cd server && yarn dev",
     "dev:codegen": "graphql-codegen --config codegen.yml -w",
+    "run:server": "cd server && yarn start",
     "init:all": "run-p init init:server init:client",
-    "init": "yarn install", 
+    "init": "yarn install",
     "init:server": "cd server && yarn install",
-    "init:client": "cd client && yarn install"
+    "init:client": "cd client && yarn install",
+    "start": "NODE_ENV=production yarn run:server"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.8.1",

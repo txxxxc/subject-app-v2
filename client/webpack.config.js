@@ -10,7 +10,7 @@ module.exports = {
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[id].bundle.js',
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -27,7 +27,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', 'json'],
-    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    modules: [path.resolve(__dirname, 'src')],
   },
   plugins: [
     new HtmlWebPackPlugin({
