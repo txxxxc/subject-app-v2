@@ -3,8 +3,9 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import dotenv from 'dotenv';
 import path from 'path';
+import fetch from 'node-fetch';
 
-const envPath = path.join(__dirname, '../../.env');
+const envPath = path.resolve('../.env');
 dotenv.config({ path: envPath });
 
 const URL =
@@ -16,6 +17,7 @@ export const createApolloClient = () =>
   new ApolloClient({
     link: createHttpLink({
       uri: `${URL}/graphql`,
+      fetch,
     }),
     cache: new InMemoryCache(),
   });
