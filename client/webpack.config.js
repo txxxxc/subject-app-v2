@@ -8,6 +8,7 @@ module.exports = {
   entry: './src/App.tsx',
   devtool: 'source-map',
   externals: [nodeExternals()],
+  target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -27,7 +28,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', 'json'],
-    modules: [path.resolve(__dirname, 'src')],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   plugins: [
     new HtmlWebPackPlugin({
