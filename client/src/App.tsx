@@ -4,6 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 import { ThemeProvider as MaterialThemeProvider } from '@material-ui/styles';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { createApolloClient } from './utils/createApolloClient';
 import theme from './utils/theme';
 
@@ -14,7 +15,9 @@ const App = () => (
     <ApolloHooksProvider client={client}>
       <MaterialThemeProvider theme={theme}>
         <StyledThemeProvider theme={theme}>
-          <div>Hello React!!</div>
+          <CssBaseline>
+            <div>Hello React!!</div>
+          </CssBaseline>
         </StyledThemeProvider>
       </MaterialThemeProvider>
     </ApolloHooksProvider>

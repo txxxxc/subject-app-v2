@@ -19,6 +19,18 @@ module.exports = ({ config }) => {
       },
     ],
   });
+  config.module.rules.push({
+    test: /\.css$/,
+    include: path.resolve(__dirname, '../src'),
+    use: [
+      {
+        loader: require.resolve('style-loader'),
+      },
+      {
+        loader: require.resolve('css-loader'),
+      },
+    ],
+  });
   config.resolve.extensions.push('.ts', '.tsx');
   return config;
 };
