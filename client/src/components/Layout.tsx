@@ -13,9 +13,10 @@ const Layout: FC = () => (
     </Container>
   </CssBaseline>
 );
-
+// 中身の要素の幅が最低どのくらい必要かわからないので、保留。
 const Container = styled.div`
   width: 100%;
+  height: 100vh;
   background-color: #f6f6f4;
 `;
 
@@ -28,21 +29,21 @@ const Header = styled.div`
 
 const Main = styled.div`
   display: flex;
-  width: 1920px;
-  height: 1000px;
+  width: 100%;
+  height: 100%;
   margin-top: 30px;
 `;
 
 const TimeTable = styled.div`
-  width: 60%;
-  height: 100%;
+  width: 70%;
+  min-width: 700px;
   background-color: white;
   border: solid 1px black;
 `;
 
 const SubjectList = styled.div`
-  width: 40%;
-  height: 100%;
+  width: 30%;
+  min-width: 300px;
   background-color: white;
   border: solid 1px black;
 `;
