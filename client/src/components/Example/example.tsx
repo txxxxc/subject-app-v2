@@ -8,11 +8,11 @@ export interface ExampleProps {
   action(): void;
 }
 
-export const Example: FC<ExampleProps> = props => {
+export const Example: FC<ExampleProps> = (props) => {
   const { text, flag, action } = props;
   const [count, setCount] = useState(0);
-  const countUp = useCallback(() => setCount(prev => prev + 1), []);
-  const countDown = useCallback(() => setCount(prev => prev - 1), []);
+  const countUp = useCallback(() => setCount((prev) => prev + 1), []);
+  const countDown = useCallback(() => setCount((prev) => prev - 1), []);
 
   return (
     <div>
