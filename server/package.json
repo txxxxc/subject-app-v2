@@ -3,12 +3,10 @@
   "version": "0.0.1",
   "description": "Awesome project developed with TypeORM.",
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server --config ./webpack.config.js",
-    "prod": "NODE_ENV=production webpack-dev-server --config ./webpack.config.js",
     "build": "webpack --config webpack.config.js",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
-    "webpack": "webpack && nodemon dist/server.js",
-    "start": "node ./dist/server.js"
+    "dev": "webpack && nodemon dist/server.js",
+    "start": "node ./dist/server.js",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "apollo-server-express": "^2.9.7",

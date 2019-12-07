@@ -13,8 +13,7 @@ import { Course } from './entity/Course';
 const envPath = path.resolve('../.env');
 dotenv.config({ path: envPath });
 
-const URL =
-  process.env.NODE_ENV === 'development'
+const URL = process.env.NODE_ENV === 'development'
     ? process.env.SERVER_DEVELOPMENT_URL
     : process.env.PRODUCTION_URL;
 
