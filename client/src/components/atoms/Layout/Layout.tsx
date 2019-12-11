@@ -48,5 +48,4 @@ const SubjectList = styled.div`
   border: solid 1px black;
 `;
 
-
 export default Layout;
