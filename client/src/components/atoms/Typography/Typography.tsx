@@ -15,7 +15,7 @@ const Typography: FC<TypographyProps> = (props: TypographyProps) => {
 
   return (
     // コンポーネントの最初の文字は必ず大文字
-    <BlackText component="div">
+    <Text component="div">
       <Box
         fontWeight={fontWeight}
         textAlign={textAlign}
@@ -24,10 +24,10 @@ const Typography: FC<TypographyProps> = (props: TypographyProps) => {
       >
         {text}
       </Box>
-    </BlackText>
+    </Text>
   );
 };
 
-const BlackText = styled(MuiTypography)``;
+const Text = styled(MuiTypography)``;
 
 export default Typography;
