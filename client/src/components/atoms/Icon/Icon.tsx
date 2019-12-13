@@ -7,12 +7,11 @@ import Dehaze from '@material-ui/icons/Dehaze';
 import IconButton from '@material-ui/core/IconButton';
 
 export interface IconProps {
-  IconName: 'Dehaze' | 'Search' | 'Delete';
+  iconName: 'Dehaze' | 'Search' | 'Delete';
 }
 
 const Icon: SFC<IconProps> = (props: IconProps) => {
-  const { IconName } = props;
-  switch (IconName) {
+  switch (props.iconName) {
     case 'Dehaze': {
       return (
         <IconButton>
