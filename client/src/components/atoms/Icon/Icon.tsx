@@ -15,14 +15,14 @@ const Icon: SFC<IconProps> = (props: IconProps) => {
     case 'Dehaze': {
       return (
         <IconButton>
-          <Dehaze />
+          <Dehaze style={{ color: 'white' }} />
         </IconButton>
       );
     }
     case 'Search': {
       return (
         <IconButton>
-          <Search />
+          <Search style={{ color: 'white' }} />
         </IconButton>
       );
     }
