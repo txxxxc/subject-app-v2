@@ -1,5 +1,6 @@
 const path = require('path');
 module.exports = ({ config }) => {
+  config.devtool = 'source-map';
   config.module.rules.push({
     test: /\.tsx?$/,
     include: path.resolve(__dirname, '../src'),
@@ -32,5 +33,11 @@ module.exports = ({ config }) => {
     ],
   });
   config.resolve.extensions.push('.ts', '.tsx');
+  // config.resolve.alias.push({
+  //   '@': path.resolve(__dirname, '../src/components'),
+  // });
+  config.resolve.alias['@'] = path.resolve(__dirname, '../src/components');
+  config.resolve.alias['utils'] = path.resolve(__dirname, '../src/utils');
+  console.log(config.resolve.alias);
   return config;
 };

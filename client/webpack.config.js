@@ -25,6 +25,10 @@ module.exports = {
     ],
   },
   resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      '@': path.resolve(__dirname, './src/components/'),
+    },
     extensions: ['.tsx', '.ts', '.js', 'json'],
     modules: [path.resolve(__dirname, 'src'), './node_modules'],
   },

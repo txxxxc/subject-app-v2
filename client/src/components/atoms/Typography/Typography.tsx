@@ -11,19 +11,12 @@ export interface TypographyProps {
 }
 
 const Typography: FC<TypographyProps> = (props: TypographyProps) => {
-  const { text, fontWeight, textAlign, fontSize, color } = props;
+  const { text, ...boxProps } = props;
 
   return (
     // コンポーネントの最初の文字は必ず大文字
     <Text component="div">
-      <Box
-        fontWeight={fontWeight}
-        textAlign={textAlign}
-        fontSize={fontSize}
-        color={color}
-      >
-        {text}
-      </Box>
+      <Box {...boxProps}>{text}</Box>
     </Text>
   );
 };
