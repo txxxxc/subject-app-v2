@@ -32,6 +32,7 @@ const Card: FC<CardProps> = (props: CardProps) => {
             text={props.subjectName}
             fontSize={34}
             fontWeight="fontWeightLight"
+            color={theme.palette.text.primary}
           />
         </Content>
       </ActionArea>
