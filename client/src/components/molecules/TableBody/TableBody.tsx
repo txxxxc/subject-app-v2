@@ -1,10 +1,6 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
-import {
-  TableBody as MuiTableBody,
-  TableRow as MuiTableRow,
-  TableCell as MuiTableCell,
-} from '@material-ui/core';
+// import styled from 'styled-components';
+import { TableBody, TableRow, TableCell } from '@material-ui/core';
 import theme from 'utils/theme';
 import Typography from '@/atoms/Typography/Typography';
 
@@ -21,33 +17,25 @@ export interface TableBodyProps {
 
 const TableHeadComponent: FC<TableBodyProps> = (props: TableBodyProps) => (
   <TableBody>
-    <TableRow>
-      {props.subjectRows.map(row => (
-        <TableRow key={row.block}>
-          <TableCell component="th" scope="row">
-            {row.block}
-          </TableCell>
-          <TableCell align="right">{row.courseName}</TableCell>
-          <TableCell align="right">{row.teacherName}</TableCell>
-          <TableCell align="right">
-            {row.isCompulsory && (
-              <Typography
-                text="必修"
-                fontSize={14}
-                color={theme.palette.secondary.main}
-              />
-            )}
-          </TableCell>
-        </TableRow>
-      ))}
-    </TableRow>
+    {props.subjectRows.map((row, i) => (
+      <TableRow key={i}>
+        <TableCell component="th" scope="row">
+          {row.block}
+        </TableCell>
+        <TableCell>{row.courseName}</TableCell>
+        <TableCell>{row.teacherName}</TableCell>
+        <TableCell>
+          {row.isCompulsory && (
+            <Typography
+              text="必修"
+              fontSize={14}
+              color={theme.palette.secondary.main}
+            />
+          )}
+        </TableCell>
+      </TableRow>
+    ))}
   </TableBody>
 );
-
-const TableBody = styled(MuiTableBody)``;
-
-const TableRow = styled(MuiTableRow)``;
-
-const TableCell = styled(MuiTableCell)``;
 
 export default TableHeadComponent;
