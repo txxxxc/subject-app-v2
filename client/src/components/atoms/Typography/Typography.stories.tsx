@@ -16,6 +16,7 @@ stories.add('ヘッダー', () => (
     text={text('テキスト', 'ヘッダー')}
     fontWeight="fontWeightBold"
     fontSize={34}
+    color={text('カラー', theme.palette.text.primary)}
   />
 ));
 stories.add('科目名', () => (
