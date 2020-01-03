@@ -17,8 +17,7 @@ const Modal: FC<ModalProps> = (props: ModalProps) => {
 
 const Content = styled.div`
   position: absolute;
-  width: 800px;
-  height: 500px;
+  height: 100%;
   background-color: white;
   top: 50%;
   left: 50%;
