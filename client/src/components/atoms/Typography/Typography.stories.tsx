@@ -47,6 +47,6 @@ stories.add('必修', () => (
   <Typography
     text={text('テキスト', '必修')}
     fontSize={14}
-    color={text('カラー', theme.palette.grey[500])}
+    color={text('カラー', theme.palette.secondary.main)}
   />
 ));
