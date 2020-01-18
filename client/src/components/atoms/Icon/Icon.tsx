@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 export interface IconProps {
   iconName: 'Dehaze' | 'Search' | 'Delete';
   color?: string;
+  onClick: any;
 }
 
 const Icon: SFC<IconProps> = (props: IconProps) => {
@@ -15,21 +16,21 @@ const Icon: SFC<IconProps> = (props: IconProps) => {
     case 'Dehaze': {
       return (
         <IconButton>
-          <Dehaze style={{ color: props.color }} />
+          <Dehaze style={{ color: props.color }} onClick={props.onClick} />
         </IconButton>
       );
     }
     case 'Search': {
       return (
         <IconButton>
-          <Search style={{ color: props.color }} />
+          <Search style={{ color: props.color }} onClick={props.onClick} />
         </IconButton>
       );
     }
     case 'Delete': {
       return (
         <IconButton>
-          <Delete style={{ color: props.color }} />
+          <Delete style={{ color: props.color }} onClick={props.onClick} />
         </IconButton>
       );
     }

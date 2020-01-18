@@ -8,11 +8,11 @@ import Typography from '@/atoms/Typography/Typography';
 const AppBar: SFC<{}> = () => (
   <MuiAppBar>
     <Toolbar>
-      <Icon iconName="Dehaze" />
+      <Icon iconName="Dehaze" onClick={() => {}} />
       <Box>
         <Typography text="Subject Simulator" fontSize={34} color={'white'} />
       </Box>
-      <Icon iconName="Search" />
+      <Icon iconName="Search" onClick={() => {}} />
     </Toolbar>
   </MuiAppBar>
 );

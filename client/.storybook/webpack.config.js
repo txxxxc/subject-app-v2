@@ -38,6 +38,5 @@ module.exports = ({ config }) => {
   // });
   config.resolve.alias['@'] = path.resolve(__dirname, '../src/components');
   config.resolve.alias['utils'] = path.resolve(__dirname, '../src/utils');
-  console.log(config.resolve.alias);
   return config;
 };
