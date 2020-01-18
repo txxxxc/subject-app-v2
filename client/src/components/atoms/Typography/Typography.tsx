@@ -8,14 +8,16 @@ export interface TypographyProps {
   textAlign?: string;
   fontSize?: string | number;
   color?: string;
+  className?: string;
 }
 
 const Typography: FC<TypographyProps> = (props: TypographyProps) => {
-  const { text, ...boxProps } = props;
+  const { text, className, ...boxProps } = props;
+  console.log(className);
 
   return (
     // コンポーネントの最初の文字は必ず大文字
-    <Text component="div">
+    <Text component="div" className={className}>
       <Box {...boxProps}>{text}</Box>
     </Text>
   );

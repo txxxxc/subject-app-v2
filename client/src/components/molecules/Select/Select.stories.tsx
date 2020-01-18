@@ -10,13 +10,14 @@ stories.addDecorator(muiTheme([theme]));
 stories.addParameters({ info: { inline: true } });
 stories.addDecorator(withKnobs);
 
-const menuItem = ['dummy', 'dummy', 'dummy', 'dummy'];
+const menuItem = ['dummy1', 'dummy2', 'dummy3', 'dummy4'];
 
 stories.add('Select', () => (
   <Select
     inputLabel="テスト"
     menuItem={menuItem}
     currentItem={menuItem[0]}
-    handleChange={() => console.log('hoge')}
+    category="name"
+    onChange={e => console.log(e.target)}
   />
 ));

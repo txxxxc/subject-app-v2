@@ -3,7 +3,7 @@ import Switch from '@material-ui/core/Switch';
 
 export interface SwitchProps {
   checked: boolean;
-  setChecked?(): void;
+  onChange?(): void;
 }
 
 const SwitchComponent: FC<SwitchProps> = (props: SwitchProps) => {
@@ -11,7 +11,7 @@ const SwitchComponent: FC<SwitchProps> = (props: SwitchProps) => {
     <div>
       <Switch
         checked={props.checked}
-        onChange={props.setChecked}
+        onChange={props.onChange}
         color="primary"
       />
     </div>
