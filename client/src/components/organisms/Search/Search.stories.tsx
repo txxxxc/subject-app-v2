@@ -18,28 +18,28 @@ const searchProps: SearchProps = {
       menuItem: ['', '国語', '数学', '英語'],
       currentItem: '',
       category: 'subject',
-      onChange: () => console.log('clicked'),
+      onChange: () => {},
     },
     {
       inputLabel: 'ブロック',
       menuItem: ['', 'I_A', 'II_A', 'III_A'],
       currentItem: '',
       category: 'block',
-      onChange: () => console.log('clicked'),
+      onChange: () => {},
     },
     {
       inputLabel: '担当教員',
       menuItem: ['', 'Aさん', 'Bさん', 'Cさん'],
       currentItem: '',
       category: 'teacher',
-      onChange: () => console.log('clicked'),
+      onChange: () => {},
     },
   ],
   switch: {
     checked: false,
-    onChange: () => console.log('clicked'),
+    onChange: () => {},
   },
-  iconOnClose: () => console.log('clicked'),
+  iconOnClose: () => {},
 };
 
 stories.add('Search', () => (

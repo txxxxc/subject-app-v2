@@ -21,10 +21,8 @@ const SearchComponent: FC<SearchProps> = (props: SearchProps) => {
     isCompulsory: false,
   });
 
-  const changeCurrentData = (e: any) => {
+  const changeCurrentData = (e: any) =>
     setCurrentData({ ...currentData, [e.target.name]: e.target.value });
-    console.log(e.target.name, e.target.value);
-  };
 
   const onSwitch = () =>
     setCurrentData({ ...currentData, isCompulsory: !currentData.isCompulsory });

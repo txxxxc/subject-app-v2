@@ -18,6 +18,6 @@ stories.add('Select', () => (
     menuItem={menuItem}
     currentItem={menuItem[0]}
     category="name"
-    onChange={e => console.log(e.target)}
+    onChange={() => {}}
   />
 ));

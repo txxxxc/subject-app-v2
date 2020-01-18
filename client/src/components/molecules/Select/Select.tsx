@@ -1,11 +1,9 @@
 import React, { FC } from 'react';
-// import styled from 'styled-components';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { styled as muiStyled } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-// import theme from 'utils/theme';
 
 export interface SelectProps {
   inputLabel: string;

@@ -13,7 +13,6 @@ export interface TypographyProps {
 
 const Typography: FC<TypographyProps> = (props: TypographyProps) => {
   const { text, className, ...boxProps } = props;
-  console.log(className);
 
   return (
     // コンポーネントの最初の文字は必ず大文字
