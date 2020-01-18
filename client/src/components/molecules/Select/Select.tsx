@@ -36,16 +36,4 @@ const Container = muiStyled(FormControl)({
   marginTop: '20px',
 });
 
-// const StyledSelect = styled(Select)`
-//   display: block;
-//   /* & .MuiOutlinedInput-root.Mui-focused.MuiOutlinedInput-notchedOutline {
-//     border-color: red;
-//   }
-//   & .Mui-focused {
-//     border-color: red;
-//   }
-//   & .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-//     border-color: red;
-//   } */
-// `;
 export default SelectComponent;

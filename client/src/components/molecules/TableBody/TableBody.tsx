@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-// import styled from 'styled-components';
 import { TableBody, TableRow, TableCell } from '@material-ui/core';
 import theme from 'utils/theme';
 import Typography from '@/atoms/Typography/Typography';
