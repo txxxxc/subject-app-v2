@@ -15,22 +15,22 @@ const Icon: SFC<IconProps> = (props: IconProps) => {
   switch (props.iconName) {
     case 'Dehaze': {
       return (
-        <IconButton>
-          <Dehaze style={{ color: props.color }} onClick={props.onClick} />
+        <IconButton onClick={props.onClick}>
+          <Dehaze style={{ color: props.color }} />
         </IconButton>
       );
     }
     case 'Search': {
       return (
-        <IconButton>
-          <Search style={{ color: props.color }} onClick={props.onClick} />
+        <IconButton onClick={props.onClick}>
+          <Search style={{ color: props.color }} />
         </IconButton>
       );
     }
     case 'Delete': {
       return (
-        <IconButton>
-          <Delete style={{ color: props.color }} onClick={props.onClick} />
+        <IconButton onClick={props.onClick}>
+          <Delete style={{ color: props.color }} />
         </IconButton>
       );
     }
