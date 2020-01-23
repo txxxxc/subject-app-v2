@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-// import styled from 'styled-components';
 import Table from '@material-ui/core/Table';
 import TableHead, { TableHeadProps } from '@/molecules/TableHead/TableHead';
 import TableBody, { TableBodyProps } from '@/molecules/TableBody/TableBody';
