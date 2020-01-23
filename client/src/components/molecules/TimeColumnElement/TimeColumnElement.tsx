@@ -42,7 +42,7 @@ const Container = styled.div<{ height: number }>`
 
 const ElementContainer = styled.div`
   width: 56px;
-  height: 120px;
+  height: 167px;
 `;
 
 const Period = styled(Typography)`

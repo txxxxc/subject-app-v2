@@ -9,21 +9,38 @@ export interface TimeColumnProps {
 }
 
 const TimeColumn: FC<TimeColumnProps> = (props: TimeColumnProps) => {
-  const elements = props.elements.map((elem, i) => (
-    <TimeColumnElement
-      additionalPeriod={elem.additionalPeriod}
-      period={elem.period}
-      time={i.toString()}
-      key={i}
-    />
-  ));
+  const elements = props.elements.map((elem, i) => {
+    if (i === 4) {
+      return (
+        <React.Fragment key={i}>
+          <Blank />
+          <TimeColumnElement
+            additionalPeriod={elem.additionalPeriod}
+            period={elem.period}
+            time={i.toString()}
+            key={i}
+          />
+        </React.Fragment>
+      );
+    }
 
-  return <Container>{elements}</Container>;
+    return (
+      <TimeColumnElement
+        additionalPeriod={elem.additionalPeriod}
+        period={elem.period}
+        time={i.toString()}
+        key={i}
+      />
+    );
+  });
+
+  return <TimeColumnContainer>{elements}</TimeColumnContainer>;
 };
 
-const Container = styled.div`
-  height: 1000px;
-  padding: 20px 0;
+const TimeColumnContainer = styled.div``;
+
+const Blank = styled.div`
+  height: 30px;
 `;
 
 export default TimeColumn;

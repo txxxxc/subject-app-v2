@@ -22,6 +22,16 @@ const elements = [
   {
     period: '12:20',
   },
+  {
+    additionalPeriod: '12:50',
+    period: '13:45',
+  },
+  {
+    period: '14:40',
+  },
+  {
+    period: '15:30',
+  },
 ];
 
 stories.add('タイムテーブル', () => <TimeColumn elements={elements} />);
