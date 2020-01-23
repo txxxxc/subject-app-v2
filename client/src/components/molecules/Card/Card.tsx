@@ -4,51 +4,60 @@ import styledComponents from 'styled-components';
 import { Card as MuiCard } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
 import Typography from '@/atoms/Typography/Typography';
 import Icon from '@/atoms/Icon/Icon';
 import theme from '../../../utils/theme';
 
 export interface CardProps {
+  elements: CardElements;
+  actions: CardActions;
+}
+
+export interface CardElements {
   blockName: string;
-  subjectName: string;
+}
+
+export interface CardActions {
+  onIconClick(): void;
+  onActionAreaClick(block: string): void;
 }
 
 const Card: FC<CardProps> = (props: CardProps) => {
   return (
     <Container>
-      <Header>
-        <BlockName
-          text={props.blockName}
-          fontSize={14}
-          color={theme.palette.grey[500]}
-        />
-        <DeleteIcon>
-          <Icon iconName="Delete" />
-        </DeleteIcon>
-      </Header>
-      <ActionArea>
+      <ActionArea onClick={() => props.actions.onActionAreaClick('hoge')}>
+        <Header>
+          <BlockName
+            text={props.elements.blockName}
+            fontSize={14}
+            color={theme.palette.grey[500]}
+          />
+        </Header>
         <Content>
-          <Typography
-            text={props.subjectName}
+          <SubjectTypography
+            text="hoge"
             fontSize={34}
             fontWeight="fontWeightLight"
             color={theme.palette.text.primary}
           />
         </Content>
       </ActionArea>
+      <CardActions>
+        <DeleteIcon>
+          <Icon iconName="Delete" onClick={() => props.actions.onIconClick} />
+        </DeleteIcon>
+      </CardActions>
     </Container>
   );
 };
 
 const Container = styled(MuiCard)({
   width: '200px',
-  height: '120px',
-  padding: 0,
 });
 
 const Header = styled(CardContent)({
   display: 'flex',
-  height: '35%',
   padding: '0 0 0 8px',
 });
 
@@ -59,11 +68,15 @@ const BlockName = styledComponents(Typography)`
 
 const DeleteIcon = styledComponents.div`
   margin-left: auto;
+  z-index: 100;
+`;
+
+const SubjectTypography = styledComponents(Typography)`
+  padding-left: 5px;
 `;
 
 const ActionArea = styled(CardActionArea)({
-  height: '65%',
-  padding: 0,
+  padding: '5px 0 0 0',
 });
 
 const Content = styled(CardContent)({

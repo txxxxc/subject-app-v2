@@ -1,20 +1,21 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import Card, { CardProps } from '@/molecules/Card/Card';
+import Card, { CardElements, CardActions } from '@/molecules/Card/Card';
 
 export interface CardRowProps {
-  cardRow: CardProps[];
+  cardRowElements: CardRowElements;
+  cardActions: CardActions;
+}
+
+export interface CardRowElements {
+  elements: CardElements[];
 }
 
 const CardRow: FC<CardRowProps> = (props: CardRowProps) => {
   return (
     <Container>
-      {props.cardRow.map((card, i) => (
-        <Card
-          subjectName={card.subjectName}
-          blockName={card.blockName}
-          key={i}
-        />
+      {props.cardRowElements.elements.map((card, i) => (
+        <Card elements={card} actions={props.cardActions} key={i} />
       ))}
     </Container>
   );

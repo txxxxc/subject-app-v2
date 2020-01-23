@@ -14,5 +14,7 @@ stories.add('カード', () => (
   <Card
     subjectName={text('科目', '数学Aα')}
     blockName={text('ブロック', 'I_A')}
+    onIconClick={() => {}}
+    onActionAreaClick={() => {}}
   />
 ));

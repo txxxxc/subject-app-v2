@@ -8,14 +8,35 @@ const stories = storiesOf('CardRow', module);
 stories.addDecorator(muiTheme([theme]));
 stories.addParameters({ info: { inline: true } });
 
-const cardRowElements: CardRowProps = {
-  cardRow: [
-    { blockName: 'I_A', subjectName: '数学' },
-    { blockName: 'II_A', subjectName: '国語' },
-    { blockName: 'II_A', subjectName: '国語' },
-    { blockName: 'II_A', subjectName: '国語' },
-    { blockName: 'II_A', subjectName: '国語' },
-  ],
+const cardRow: CardRowProps = {
+  cardRowElements: {
+    elements: [
+      {
+        blockName: 'I_B',
+      },
+      {
+        blockName: 'I_B',
+      },
+      {
+        blockName: 'I_B',
+      },
+      {
+        blockName: 'I_B',
+      },
+      {
+        blockName: 'I_B',
+      },
+    ],
+  },
+  cardActions: {
+    onIconClick: () => {},
+    onActionAreaClick: () => {},
+  },
 };
 
-stories.add('CardRow', () => <CardRow cardRow={cardRowElements.cardRow} />);
+stories.add('CardRow', () => (
+  <CardRow
+    cardRowElements={cardRow.cardRowElements}
+    cardActions={cardRow.cardActions}
+  />
+));
