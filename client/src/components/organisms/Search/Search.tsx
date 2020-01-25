@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import theme from 'utils/theme';
@@ -67,6 +68,7 @@ const HeaderTypography = muiStyled(Typography)({
 const SearchItems = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 8px;
 `;
 
 export default SearchComponent;
