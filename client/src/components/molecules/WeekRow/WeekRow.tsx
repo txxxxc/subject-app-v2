@@ -24,7 +24,6 @@ const Container = styled.div`
   display: flex;
   height: 35px;
   width: 1000px;
-  border: solid 1px black;
 `;
 const DayOfTheWeek = styled.div`
   text-align: center;

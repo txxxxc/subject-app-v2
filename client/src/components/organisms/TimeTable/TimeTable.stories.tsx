@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { muiTheme } from 'storybook-addon-material-ui';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import theme from '../../../utils/theme';
 import TimeTable, { TimeTableProps } from './TimeTable';
 
@@ -24,51 +25,195 @@ const props: TimeTableProps = {
       {
         period: '12:20',
       },
+      {
+        additionalPeriod: '12:50',
+        period: '13:45',
+      },
+      {
+        period: '14:40',
+      },
+      {
+        period: '15:30',
+      },
     ],
   },
-  cards: [
+  cardRows: [
     {
-      cardRow: [
-        { blockName: 'I_A', subjectName: '数学' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
+      elements: [
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
       ],
     },
     {
-      cardRow: [
-        { blockName: 'I_A', subjectName: '数学' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
+      elements: [
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
       ],
     },
     {
-      cardRow: [
-        { blockName: 'I_A', subjectName: '数学' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
+      elements: [
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
       ],
     },
     {
-      cardRow: [
-        { blockName: 'I_A', subjectName: '数学' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
-        { blockName: 'II_A', subjectName: '国語' },
+      elements: [
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
+        {
+          blockName: 'hoge',
+        },
       ],
     },
   ],
+  cardActions: {
+    onActionAreaClick: () => {},
+    onIconClick: () => {},
+  },
+  tableBody: {
+    subjectRows: [
+      {
+        block: 'hoge',
+        courseName: 'hoge',
+        teacherName: 'hoge',
+        isCompulsory: false,
+      },
+      {
+        block: 'hoge',
+        courseName: 'hoge',
+        teacherName: 'hoge',
+        isCompulsory: true,
+      },
+      {
+        block: 'hoge',
+        courseName: 'hoge',
+        teacherName: 'hoge',
+        isCompulsory: false,
+      },
+      {
+        block: 'hoge',
+        courseName: 'hoge',
+        teacherName: 'hoge',
+        isCompulsory: true,
+      },
+    ],
+  },
+  open: false,
 };
 
+stories.addDecorator(withKnobs);
 stories.add('タイムテーブル', () => (
   <TimeTable
     timeColumnElements={props.timeColumnElements}
-    cards={props.cards}
+    cardRows={props.cardRows}
+    cardActions={props.cardActions}
+    tableBody={props.tableBody}
+    open={boolean('Disabled', false)}
   />
 ));

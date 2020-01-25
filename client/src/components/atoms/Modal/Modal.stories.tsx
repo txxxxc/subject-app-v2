@@ -10,4 +10,6 @@ stories.addDecorator(muiTheme([theme]));
 stories.addParameters({ info: { inline: true } });
 stories.addDecorator(withKnobs);
 
-stories.add('Modal', () => <Modal open={boolean('isCompulsory', false)} />);
+stories.add('Modal', () => (
+  <Modal open={boolean('isCompulsory', false)}>This is Modal</Modal>
+));
