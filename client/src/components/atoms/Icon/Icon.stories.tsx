@@ -6,6 +6,10 @@ import Icon from './Icon';
 
 const stories = storiesOf('Icon', module);
 stories.addDecorator(muiTheme([theme]));
-stories.add('Dehaze', () => <Icon iconName="Dehaze" color="white" />);
-stories.add('Delete', () => <Icon iconName="Search" color="white" />);
-stories.add('Search', () => <Icon iconName="Delete" />);
+stories.add('Dehaze', () => (
+  <Icon iconName="Dehaze" color="white" onClick={() => {}} />
+));
+stories.add('Delete', () => (
+  <Icon iconName="Search" color="white" onClick={() => {}} />
+));
+stories.add('Search', () => <Icon iconName="Delete" onClick={() => {}} />);
