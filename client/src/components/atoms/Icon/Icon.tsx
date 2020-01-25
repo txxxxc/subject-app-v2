@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 export interface IconProps {
   iconName: 'Dehaze' | 'Search' | 'Delete';
   color?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick: any;
 }
 
