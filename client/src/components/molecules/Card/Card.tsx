@@ -19,7 +19,7 @@ export interface CardElements {
 }
 
 export interface CardActions {
-  onIconClick(): void;
+  onIconClick(block: string): void;
   onActionAreaClick(block: string): void;
 }
 

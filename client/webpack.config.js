@@ -29,6 +29,7 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, './src/components/'),
       utils: path.resolve(__dirname, './src/utils'),
+      gen: path.resolve(__dirname, './gen'),
     },
     extensions: ['.tsx', '.ts', '.js', 'json'],
     modules: [path.resolve(__dirname, 'src'), './node_modules'],

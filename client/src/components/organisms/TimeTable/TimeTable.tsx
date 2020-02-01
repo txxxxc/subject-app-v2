@@ -1,5 +1,14 @@
-import React, { FC } from 'react';
+import React, {
+  FC,
+  useState,
+  createContext,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import styled from 'styled-components';
+import { useSearchCoursesByBlockLazyQuery } from 'gen/graphql-client-api';
+import { cardRows, timeColumnElements } from 'utils/data';
+import Circular from '@/atoms/Circular/Circular';
 import TimeColumn, { TimeColumnProps } from '@/molecules/TimeColumn/TimeColumn';
 import Table from '@/organisms/Table/Table';
 import { TableHeadProps } from '@/molecules/TableHead/TableHead';
@@ -36,26 +45,103 @@ export interface Blocks {
   LHR: string;
 }
 
-const TimeTable: FC<TimeTableProps> = (props: TimeTableProps) => {
+// こっから
+type MyState = {
+  I_A: string;
+};
+
+type ContextValue = {
+  state: MyState;
+  setState: Dispatch<SetStateAction<MyState>>;
+};
+
+const TimeTable: FC<TimeTableProps> = () => {
   const head: TableHeadProps = {
     headElements: ['ブロック', '科目名', '教師名', '必修'],
   };
+  const TimeTableContext = createContext([
+    {
+      I_A: '',
+      // I_B: '',
+      // II_A: '',
+      // II_B: '',
+      // III_A: '',
+      // III_B: '',
+      // IV_A: '',
+      // IV_B: '',
+      // V_A: '',
+      // V_B: '',
+      // VI: '',
+    },
+    () => {},
+  ]);
+
+  const AppContext = createContext<ContextValue>();
+
+  const [state, setState] = useState({
+    I_A: '',
+    // I_B: '',
+    // II_A: '',
+    // II_B: '',
+    // III_A: '',
+    // III_B: '',
+    // IV_A: '',
+    // IV_B: '',
+    // V_A: '',
+    // V_B: '',
+    // VI: '',
+  });
+
+  // ここまで
+
+  const [table, openTable] = useState(false);
+
+  const [
+    getFilteredCourses,
+    { loading, data },
+  ] = useSearchCoursesByBlockLazyQuery();
+
+  const cardActions: CardActions = {
+    onActionAreaClick: block => {
+      openTable(true);
+      getFilteredCourses({ variables: { block } });
+    },
+    onIconClick: block => {
+      setState({
+        ...state,
+        [block]: '',
+      });
+    },
+  };
+
+  const tableData: TableBodyProps = {
+    subjectRows: [],
+  };
+  data.searchCoursesByBlock.map(course =>
+    tableData.subjectRows.push({
+      block: course.block,
+      teacherName: course.teacher_name,
+      courseName: course.course_name,
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      isCompulsory: course.is_compulsory,
+    }),
+  );
 
   return (
-    <>
+    <AppContext.Provider value={[state, setState]}>
       <TimeTableContainer>
         <Header>
           <WeekRow />
         </Header>
         <Contents>
-          <TimeColumn elements={props.timeColumnElements.elements} />
+          <TimeColumn elements={timeColumnElements.elements} />
           <CardContainer>
-            {props.cardRows.map((cardRowElements, i) => (
+            {cardRows.map((cardRowElements, i) => (
               <React.Fragment key={i}>
                 {i === 4 && <Blank />}
                 <CardRow
                   cardRowElements={cardRowElements}
-                  cardActions={props.cardActions}
+                  cardActions={cardActions}
                   key={i}
                 />
               </React.Fragment>
@@ -63,10 +149,10 @@ const TimeTable: FC<TimeTableProps> = (props: TimeTableProps) => {
           </CardContainer>
         </Contents>
       </TimeTableContainer>
-      <Modal open={props.open}>
-        <Table head={head} body={props.tableBody} />
+      <Modal open={table}>
+        {loading ? <Circular /> : <Table head={head} body={tableData} />}
       </Modal>
-    </>
+    </AppContext.Provider>
   );
 };
 
