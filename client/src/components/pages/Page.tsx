@@ -10,26 +10,20 @@ import SubjectList from '@/molecules/SubjectList/SubjectList';
 import AppBar from '@/organisms/AppBar/AppBar';
 import TimeTable from '@/organisms/TimeTable/TimeTable';
 
-const Template: FC<{}> = () => {
-  const PageContext = createContext([
-    {
-      I_A: '',
-      I_B: '',
-      II_A: '',
-      II_B: '',
-      III_A: '',
-      III_B: '',
-      IV_A: '',
-      IV_B: '',
-      V_A: '',
-      V_B: '',
-      VI: '',
-      currentBlock: '',
-    },
-    () => {},
-  ]);
+type ClassItem = {
+  I_A: string
+}
 
-  const [state, setState] = useState({});
+type ClassContext = {
+  class: ClassItem
+  setClass: React.Dispatch<React.SetStateAction<ClassItem>>
+}
+
+const Template: FC<{}> = () => {
+  const PageContext = createContext<ClassContext>({ class: { I_A: '' }, setClass: ()=> {} });
+
+  const [state, setState] = useState({ I_A: '' });
+
   const courses = useFindAllCoursesQuery();
   const filteredCourses = useSearchCoursesByBlockQuery();
   console.log({ filteredCourses });
@@ -43,7 +37,7 @@ const Template: FC<{}> = () => {
   };
 
   return (
-    <PageContext.Provider value={[state, setState]}>
+    <PageContext.Provider value={{ class: state, setClass: setState }}>
       <CssBaseline>
         <Container>
           <AppBar
