@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server --config ./webpack.config.js",
+    "dev": "webpack-dev-server --config ./webpack.config.js",
     "prod": "NODE_ENV=production webpack-dev-server --config ./webpack.config.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
