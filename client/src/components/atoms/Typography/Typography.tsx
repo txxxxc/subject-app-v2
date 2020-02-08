@@ -22,6 +22,8 @@ const Typography: FC<TypographyProps> = (props: TypographyProps) => {
   );
 };
 
-const Text = styled(MuiTypography)``;
+const Text = styled(MuiTypography)`
+  text-align: center;
+`;
 
 export default Typography;

@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { styled } from '@material-ui/core/styles';
 import styledComponents from 'styled-components';
 import { Card as MuiCard } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
+import { PageContext } from 'utils/contexts';
 import Typography from '@/atoms/Typography/Typography';
 import Icon from '@/atoms/Icon/Icon';
 import theme from '../../../utils/theme';
@@ -19,42 +20,81 @@ export interface CardElements {
 }
 
 export interface CardActions {
-  onIconClick(): void;
+  onIconClick(block: string): void;
   onActionAreaClick(block: string): void;
 }
 
 const Card: FC<CardProps> = (props: CardProps) => {
+  const context = useContext(PageContext);
+  const { blockName } = props.elements;
+
+  const removeSubject = block => {
+    props.actions.onIconClick(block);
+  };
+  if (blockName === 'LHR') {
+    return (
+      <Container>
+        <CardWrapper>
+          <div>
+            <Header>
+              <BlockName
+                text={blockName}
+                fontSize={14}
+                color={theme.palette.grey[500]}
+              />
+            </Header>
+            <Content>
+              <SubjectTypography
+                text={blockName}
+                fontSize={24}
+                fontWeight="fontWeightLight"
+                color={theme.palette.text.secondary}
+              />
+            </Content>
+          </div>
+        </CardWrapper>
+      </Container>
+    );
+  }
+
   return (
     <Container>
-      <ActionArea onClick={() => props.actions.onActionAreaClick('hoge')}>
-        <Header>
-          <BlockName
-            text={props.elements.blockName}
-            fontSize={14}
-            color={theme.palette.grey[500]}
-          />
-        </Header>
-        <Content>
-          <SubjectTypography
-            text="hoge"
-            fontSize={34}
-            fontWeight="fontWeightLight"
-            color={theme.palette.text.primary}
-          />
-        </Content>
-      </ActionArea>
-      <CardActions>
+      <CardWrapper>
         <DeleteIcon>
-          <Icon iconName="Delete" onClick={() => props.actions.onIconClick} />
+          <Icon iconName="Delete" onClick={() => removeSubject(blockName)} />
         </DeleteIcon>
-      </CardActions>
+        <ActionArea onClick={() => props.actions.onActionAreaClick(blockName)}>
+          <Header>
+            <BlockName
+              text={blockName}
+              fontSize={14}
+              color={theme.palette.grey[500]}
+            />
+          </Header>
+          <Content>
+            <SubjectTypography
+              text={context.class[blockName]}
+              fontSize={24}
+              fontWeight="fontWeightLight"
+              color={theme.palette.text.secondary}
+            />
+          </Content>
+        </ActionArea>
+      </CardWrapper>
     </Container>
   );
 };
 
-const Container = styled(MuiCard)({
-  width: '200px',
-});
+const Container = styledComponents(MuiCard)`
+  position: relative;
+  width: 100%;
+  margin-left: 8px;
+  &::before {
+    content:"";
+    display: block;
+    padding-top: 55%; /* 高さを幅の75%に固定 */
+  }
+`;
 
 const Header = styled(CardContent)({
   display: 'flex',
@@ -67,20 +107,29 @@ const BlockName = styledComponents(Typography)`
 `;
 
 const DeleteIcon = styledComponents.div`
-  margin-left: auto;
-  z-index: 100;
+  position: absolute;
+  left: 75%;
+  z-index: 10;
 `;
 
 const SubjectTypography = styledComponents(Typography)`
-  padding-left: 5px;
 `;
 
 const ActionArea = styled(CardActionArea)({
-  padding: '5px 0 0 0',
+  height: '100%',
+  padding: '0px 8px',
 });
 
 const Content = styled(CardContent)({
-  padding: 0,
+  height: '60px',
 });
+
+const CardWrapper = styledComponents.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+`;
 
 export default Card;

@@ -1,0 +1,17 @@
+query findAllCourses {
+  findAllCourses {
+    course_name
+    teacher_name
+    block
+    is_compulsory
+  }
+}
+
+query searchCoursesByBlock($block: String!) {
+  searchCoursesByBlock(block: $block) {
+    course_name
+    teacher_name
+    block
+    is_compulsory
+  }
+}

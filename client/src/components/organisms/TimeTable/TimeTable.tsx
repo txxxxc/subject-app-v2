@@ -1,27 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import TimeColumn, { TimeColumnProps } from '@/molecules/TimeColumn/TimeColumn';
+import { useSearchCoursesByBlockLazyQuery } from 'gen/graphql-client-api';
+import { cardRows, timeColumnElements } from 'utils/data';
+import { PageContext } from 'utils/contexts';
+import Circular from '@/atoms/Circular/Circular';
+import TimeColumn from '@/molecules/TimeColumn/TimeColumn';
 import Table from '@/organisms/Table/Table';
 import { TableHeadProps } from '@/molecules/TableHead/TableHead';
-import { TableBodyProps } from '@/molecules/TableBody/TableBody';
+import { SubjectRow } from '@/molecules/TableBody/TableBody';
 import WeekRow from '@/molecules/WeekRow/WeekRow';
 import { CardActions } from '@/molecules/Card/Card';
-import CardRow, { CardRowElements } from '@/molecules/CardRow/CardRow';
+import CardRow from '@/molecules/CardRow/CardRow';
 import Modal from '@/atoms/Modal/Modal';
 
-export interface TimeTableProps {
-  timeColumnElements: TimeColumnProps;
-  cardRows: CardRowElements[];
-  open: boolean;
-  cardActions: CardActions;
-  tableBody: TableBodyProps;
-}
-
-export interface Modal {
+export interface TableState {
   open: boolean;
 }
 
-export interface Blocks {
+export interface BlockState {
   I_A: string;
   I_B: string;
   II_A: string;
@@ -33,29 +29,103 @@ export interface Blocks {
   V_A: string;
   V_B: string;
   VI: string;
-  LHR: string;
 }
 
-const TimeTable: FC<TimeTableProps> = (props: TimeTableProps) => {
+const TimeTable: FC<{}> = () => {
+  const [state, setState] = useState<BlockState>({
+    I_A: '',
+    I_B: '',
+    II_A: '',
+    II_B: '',
+    III_A: '',
+    III_B: '',
+    IV_A: '',
+    IV_B: '',
+    V_A: '',
+    V_B: '',
+    VI: '',
+  });
+
+  const [
+    getFilteredCourses,
+    { loading, data },
+  ] = useSearchCoursesByBlockLazyQuery({ variables: { block: 'I_A' } });
+
+  // Table関連
   const head: TableHeadProps = {
     headElements: ['ブロック', '科目名', '教師名', '必修'],
   };
 
+  const tableData: SubjectRow[] = [];
+
+  const [table, toggleTable] = useState<TableState>({ open: false });
+
+  const handleClose = () => {
+    toggleTable({ open: false });
+  };
+
+  if (data) {
+    data.searchCoursesByBlock.map(course =>
+      tableData.push({
+        block: course.block,
+        teacherName: course.teacher_name,
+        courseName: course.course_name,
+        isCompulsory: course.is_compulsory,
+      }),
+    );
+  }
+
+  const cardActions: CardActions = {
+    onActionAreaClick: block => {
+      toggleTable({ open: true });
+      getFilteredCourses({ variables: { block } });
+    },
+    onIconClick: blockName => {
+      localStorage.removeItem(blockName);
+      console.log(localStorage[blockName]);
+      setState({
+        ...state,
+        [blockName]: '',
+      });
+    },
+  };
+
+  useEffect(() => {
+    let subjectName = '';
+    Object.keys(state).map(async block => {
+      subjectName = await localStorage.getItem(block);
+      console.log(block, subjectName);
+      if (subjectName) {
+        setState(prevState => {
+          console.log(`---- ${subjectName} prevState ----`, prevState);
+          console.log('---- block, subjectName ----', block, subjectName);
+          const newState = {
+            ...prevState,
+            [block]: subjectName,
+          };
+          console.log(`---- ${subjectName} newState ----`, newState);
+
+          return newState;
+        });
+      }
+    });
+  }, []);
+
   return (
-    <>
+    <PageContext.Provider value={{ class: state, setClass: setState }}>
       <TimeTableContainer>
         <Header>
           <WeekRow />
         </Header>
         <Contents>
-          <TimeColumn elements={props.timeColumnElements.elements} />
+          <TimeColumn elements={timeColumnElements.elements} />
           <CardContainer>
-            {props.cardRows.map((cardRowElements, i) => (
+            {cardRows.map((cardRowElements, i) => (
               <React.Fragment key={i}>
                 {i === 4 && <Blank />}
                 <CardRow
                   cardRowElements={cardRowElements}
-                  cardActions={props.cardActions}
+                  cardActions={cardActions}
                   key={i}
                 />
               </React.Fragment>
@@ -63,16 +133,22 @@ const TimeTable: FC<TimeTableProps> = (props: TimeTableProps) => {
           </CardContainer>
         </Contents>
       </TimeTableContainer>
-      <Modal open={props.open}>
-        <Table head={head} body={props.tableBody} />
+      <Modal open={table.open} handleClose={handleClose}>
+        {loading ? (
+          <Circular />
+        ) : (
+          <Table head={head} body={tableData} handleClose={handleClose} />
+        )}
       </Modal>
-    </>
+    </PageContext.Provider>
   );
 };
 
 const TimeTableContainer = styled.div`
-  width: 1100px;
+  width: 100%;
+  padding: 8px;
   border: solid 0.5px #e3e3e3;
+  background-color: #fafafa;
 `;
 
 const Header = styled.div`

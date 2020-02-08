@@ -6,6 +6,7 @@ import { ThemeProvider as MaterialThemeProvider } from '@material-ui/styles';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createApolloClient } from './utils/createApolloClient';
+import Page from '@/pages/Page';
 import theme from './utils/theme';
 
 const client = createApolloClient();
@@ -16,7 +17,7 @@ const App = () => (
       <MaterialThemeProvider theme={theme}>
         <StyledThemeProvider theme={theme}>
           <CssBaseline>
-            <div>Hello React!!</div>
+            <Page />
           </CssBaseline>
         </StyledThemeProvider>
       </MaterialThemeProvider>
