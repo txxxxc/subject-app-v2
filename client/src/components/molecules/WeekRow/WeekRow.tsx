@@ -23,7 +23,7 @@ const WeekRow = () => {
 const Container = styled.div`
   display: flex;
   height: 35px;
-  width: 1000px;
+  width: 100%;
 `;
 const DayOfTheWeek = styled.div`
   text-align: center;

@@ -37,10 +37,13 @@ const TimeColumn: FC<TimeColumnProps> = (props: TimeColumnProps) => {
   return <TimeColumnContainer>{elements}</TimeColumnContainer>;
 };
 
-const TimeColumnContainer = styled.div``;
+const TimeColumnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Blank = styled.div`
-  height: 35px;
+  height: 5%;
 `;
 
 export default TimeColumn;

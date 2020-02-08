@@ -92,15 +92,20 @@ const TimeTable: FC<{}> = () => {
 
   useEffect(() => {
     let subjectName = '';
-    Object.keys(state).map(block => {
-      subjectName = localStorage[block];
-      console.log(block, state[block]);
+    Object.keys(state).map(async block => {
+      subjectName = await localStorage.getItem(block);
+      console.log(block, subjectName);
       if (subjectName) {
         setState(prevState => {
-          console.log(prevState);
-          console.log(subjectName, block);
+          console.log(`---- ${subjectName} prevState ----`, prevState);
+          console.log('---- block, subjectName ----', block, subjectName);
+          const newState = {
+            ...prevState,
+            [block]: subjectName,
+          };
+          console.log(`---- ${subjectName} newState ----`, newState);
 
-          return { ...prevState, [block]: subjectName };
+          return newState;
         });
       }
     });
@@ -140,8 +145,10 @@ const TimeTable: FC<{}> = () => {
 };
 
 const TimeTableContainer = styled.div`
-  width: 1100px;
+  width: 100%;
+  padding: 8px;
   border: solid 0.5px #e3e3e3;
+  background-color: #fafafa;
 `;
 
 const Header = styled.div`

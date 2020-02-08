@@ -27,7 +27,10 @@ const Container = styled.div``;
 
 const MainContent = styled.div`
   display: flex;
-  margin-top: 30px;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 100px;
+  margin-left: 30px;
 `;
 
 export default Page;

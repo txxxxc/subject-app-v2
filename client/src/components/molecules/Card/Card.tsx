@@ -31,38 +31,70 @@ const Card: FC<CardProps> = (props: CardProps) => {
   const removeSubject = block => {
     props.actions.onIconClick(block);
   };
+  if (blockName === 'LHR') {
+    return (
+      <Container>
+        <CardWrapper>
+          <div>
+            <Header>
+              <BlockName
+                text={blockName}
+                fontSize={14}
+                color={theme.palette.grey[500]}
+              />
+            </Header>
+            <Content>
+              <SubjectTypography
+                text={blockName}
+                fontSize={24}
+                fontWeight="fontWeightLight"
+                color={theme.palette.text.secondary}
+              />
+            </Content>
+          </div>
+        </CardWrapper>
+      </Container>
+    );
+  }
 
   return (
     <Container>
-      <DeleteIcon>
-        <Icon iconName="Delete" onClick={() => removeSubject(blockName)} />
-      </DeleteIcon>
-      <ActionArea onClick={() => props.actions.onActionAreaClick(blockName)}>
-        <Header>
-          <BlockName
-            text={blockName}
-            fontSize={14}
-            color={theme.palette.grey[500]}
-          />
-        </Header>
-        <Content>
-          <SubjectTypography
-            text={context.class[blockName]}
-            fontSize={34}
-            fontWeight="fontWeightLight"
-            color={theme.palette.text.primary}
-          />
-        </Content>
-      </ActionArea>
+      <CardWrapper>
+        <DeleteIcon>
+          <Icon iconName="Delete" onClick={() => removeSubject(blockName)} />
+        </DeleteIcon>
+        <ActionArea onClick={() => props.actions.onActionAreaClick(blockName)}>
+          <Header>
+            <BlockName
+              text={blockName}
+              fontSize={14}
+              color={theme.palette.grey[500]}
+            />
+          </Header>
+          <Content>
+            <SubjectTypography
+              text={context.class[blockName]}
+              fontSize={24}
+              fontWeight="fontWeightLight"
+              color={theme.palette.text.secondary}
+            />
+          </Content>
+        </ActionArea>
+      </CardWrapper>
     </Container>
   );
 };
 
-const Container = styled(MuiCard)({
-  position: 'relative',
-  width: '200px',
-  marginLeft: '8px',
-});
+const Container = styledComponents(MuiCard)`
+  position: relative;
+  width: 100%;
+  margin-left: 8px;
+  &::before {
+    content:"";
+    display: block;
+    padding-top: 55%; /* 高さを幅の75%に固定 */
+  }
+`;
 
 const Header = styled(CardContent)({
   display: 'flex',
@@ -76,21 +108,28 @@ const BlockName = styledComponents(Typography)`
 
 const DeleteIcon = styledComponents.div`
   position: absolute;
-  left: 80%;
+  left: 75%;
   z-index: 10;
 `;
 
 const SubjectTypography = styledComponents(Typography)`
-  padding-left: 5px;
 `;
 
 const ActionArea = styled(CardActionArea)({
-  padding: '5px 8px 25px 8px',
+  height: '100%',
+  padding: '0px 8px',
 });
 
 const Content = styled(CardContent)({
-  height: '51px',
-  padding: 0,
+  height: '60px',
 });
+
+const CardWrapper = styledComponents.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+`;
 
 export default Card;
