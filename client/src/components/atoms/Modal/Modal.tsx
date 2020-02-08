@@ -4,7 +4,7 @@ import { Modal as MuiModal } from '@material-ui/core';
 
 export interface ModalProps {
   open: boolean;
-  handleClose?(): void;
+  handleClose(): void;
   children: ReactNode;
 }
 
