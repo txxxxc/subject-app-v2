@@ -12,5 +12,3 @@ $ yarn init:all
 ```
 $ yarn dev
 ```
-
-多分行けるはず！！！！
