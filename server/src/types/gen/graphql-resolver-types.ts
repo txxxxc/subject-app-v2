@@ -25,6 +25,7 @@ export type Query = {
    __typename?: 'Query',
   findUser?: Maybe<User>,
   test?: Maybe<Course>,
+  findAllCourses?: Maybe<Array<Maybe<Course>>>,
   searchCoursesByName?: Maybe<Array<Maybe<Course>>>,
   searchCoursesByTeacher?: Maybe<Array<Maybe<Course>>>,
   searchCoursesByBlock?: Maybe<Array<Maybe<Course>>>,
@@ -154,6 +155,7 @@ export type CourseResolvers<ContextType = DataSources, ParentType extends Resolv
 export type QueryResolvers<ContextType = DataSources, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   findUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>,
   test?: Resolver<Maybe<ResolversTypes['Course']>, ParentType, ContextType>,
+  findAllCourses?: Resolver<Maybe<Array<Maybe<ResolversTypes['Course']>>>, ParentType, ContextType>,
   searchCoursesByName?: Resolver<Maybe<Array<Maybe<ResolversTypes['Course']>>>, ParentType, ContextType, RequireFields<Query_SearchCoursesByNameArgs, 'course_name'>>,
   searchCoursesByTeacher?: Resolver<Maybe<Array<Maybe<ResolversTypes['Course']>>>, ParentType, ContextType, RequireFields<Query_SearchCoursesByTeacherArgs, 'teacher_name'>>,
   searchCoursesByBlock?: Resolver<Maybe<Array<Maybe<ResolversTypes['Course']>>>, ParentType, ContextType, RequireFields<Query_SearchCoursesByBlockArgs, 'block'>>,

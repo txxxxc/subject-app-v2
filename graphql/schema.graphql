@@ -1,6 +1,7 @@
 type Query {
   findUser: User
   test: Course
+  findAllCourses: [Course]
   searchCoursesByName(course_name: String!): [Course]
   searchCoursesByTeacher(teacher_name: String!): [Course]
   searchCoursesByBlock(block: String!): [Course]

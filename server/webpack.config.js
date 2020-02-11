@@ -8,6 +8,10 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: './src/index.ts',
+  output: {
+    filename: 'server.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
   target: 'node',
   devtool: 'inline-source-map',
   externals: [nodeExternals()],
@@ -27,10 +31,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js', 'json'],
-  },
-  output: {
-    filename: 'server.js',
-    path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
     publicPath: '/',
