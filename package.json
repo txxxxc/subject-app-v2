@@ -9,7 +9,7 @@
     "yarn": "1.x"
   },
   "scripts": {
-    "init:all": "run-s init:root init:client init:server",
+    "init:all": "yarn && run-s init:client init:server",
     "init:root": "yarn install",
     "init:client": "cd client && yarn install --no-cache",
     "init:server": "cd server && yarn install --no-cache",

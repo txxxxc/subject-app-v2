@@ -3,6 +3,7 @@
 ## Setup
 
 ```
+$ yarn cache clean
 $ yarn init:all
 ```
 
