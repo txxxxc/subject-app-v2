@@ -9,15 +9,18 @@
     "yarn": "1.x"
   },
   "scripts": {
-    "dev": "dev:codegen && dev:client && dev:server",
-    "dev:client": "cd client && webpack",
+    "init:all": "yarn && run-s init:client init:server",
+    "init:root": "yarn install",
+    "init:client": "cd client && yarn install --no-cache",
+    "init:server": "cd server && yarn install --no-cache",
+    "dev": "yarn dev:codegen && run-p dev:client dev:server",
+    "dev:client": "cd client && yarn dev",
     "dev:server": "cd server && yarn dev",
-    "dev:codegen": "graphql-codegen --config codegen.yml -w",
-    "run:server": "cd server && yarn start",
+    "dev:codegen": "graphql-codegen --config codegen.yml",
     "start": "NODE_ENV=production yarn run:server"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.8.1",
+    "@graphql-codegen/cli": "^1.12.2",
     "@graphql-codegen/introspection": "^1.8.1",
     "@graphql-codegen/typescript": "1.8.1",
     "@graphql-codegen/typescript-document-nodes": "1.8.1",
@@ -44,9 +47,10 @@
     "eslint-plugin-prefer-arrow": "^1.1.6",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
+    "graphql": "^14.6.0",
     "graphql-toolkit": "^0.6.8",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
-    "sequelize-cli": "^5.5.1",
     "ts-node-dev": "^1.0.0-pre.43",
     "typescript": "^3.6.4"
   },

@@ -1,6 +1,8 @@
 overwrite: true
 schema:
   - ./graphql/schema.graphql
+documents:
+  - ./graphql/queries/*.graphql
 generates:
   ./server/src/types/gen/graphql-resolver-types.ts:
     plugins:
@@ -13,11 +15,12 @@ generates:
     plugins:
       - typescript
       - typescript-operations
-      - typescript-react-apollo
+      - "typescript-react-apollo"
     config:
       withComponent: false
       withHooks: true
       withHOC: false
+      hooksImportFrom: "@apollo/react-hooks"
   ./graphql/schema.json:
     plugins:
       - introspection

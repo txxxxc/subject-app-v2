@@ -3,40 +3,12 @@
 ## Setup
 
 ```
-$ yarn
-```
-
-### client
-
-```
-$ cd client
-client $ yarn
-```
-
-### server
-
-```
-$ cd server
-server $ yarn
+$ yarn cache clean
+$ yarn init:all
 ```
 
 ## Run
 
 ```
 $ yarn dev
-// This command runs both run commands
-```
-
-### client
-
-```
-$ cd client
-client $ yarn dev
-```
-
-### server
-
-```
-$ cd server
-server $ yarn dev
 ```
