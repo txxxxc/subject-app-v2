@@ -30,6 +30,7 @@ export type Query = {
   searchCoursesByTeacher?: Maybe<Array<Maybe<Course>>>,
   searchCoursesByBlock?: Maybe<Array<Maybe<Course>>>,
   searchCoursesByCompulsory?: Maybe<Array<Maybe<Course>>>,
+  searchCourses?: Maybe<Array<Maybe<Course>>>,
 };
 
 
@@ -45,6 +46,14 @@ export type Query_SearchCoursesByTeacherArgs = {
 
 export type Query_SearchCoursesByBlockArgs = {
   block: Scalars['String']
+};
+
+
+export type Query_SearchCoursesArgs = {
+  course_name?: Maybe<Scalars['String']>,
+  teacher_name?: Maybe<Scalars['String']>,
+  block?: Maybe<Scalars['String']>,
+  is_compulsory?: Maybe<Scalars['Boolean']>
 };
 
 export type User = {
@@ -113,6 +122,8 @@ export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   info: GraphQLResolveInfo
 ) => Maybe<TTypes>;
 
+export type isTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean;
+
 export type NextResolverFn<T> = () => Promise<T>;
 
 export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
@@ -150,6 +161,7 @@ export type CourseResolvers<ContextType = DataSources, ParentType extends Resolv
   teacher_name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   room?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   is_compulsory?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type QueryResolvers<ContextType = DataSources, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -160,12 +172,14 @@ export type QueryResolvers<ContextType = DataSources, ParentType extends Resolve
   searchCoursesByTeacher?: Resolver<Maybe<Array<Maybe<ResolversTypes['Course']>>>, ParentType, ContextType, RequireFields<Query_SearchCoursesByTeacherArgs, 'teacher_name'>>,
   searchCoursesByBlock?: Resolver<Maybe<Array<Maybe<ResolversTypes['Course']>>>, ParentType, ContextType, RequireFields<Query_SearchCoursesByBlockArgs, 'block'>>,
   searchCoursesByCompulsory?: Resolver<Maybe<Array<Maybe<ResolversTypes['Course']>>>, ParentType, ContextType>,
+  searchCourses?: Resolver<Maybe<Array<Maybe<ResolversTypes['Course']>>>, ParentType, ContextType, Query_SearchCoursesArgs>,
 };
 
 export type UserResolvers<ContextType = DataSources, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type Resolvers<ContextType = DataSources> = {

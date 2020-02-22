@@ -23,7 +23,7 @@ const Typography: FC<TypographyProps> = (props: TypographyProps) => {
 };
 
 const Text = styled(MuiTypography)`
-  text-align: center;
+  /* text-align: center; */
 `;
 
 export default Typography;

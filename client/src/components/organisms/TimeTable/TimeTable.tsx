@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSearchCoursesByBlockLazyQuery } from 'gen/graphql-client-api';
 import { cardRows, timeColumnElements } from 'utils/data';
-import { PageContext } from 'utils/contexts';
+import { PageContext} from 'utils/contexts';
 import Circular from '@/atoms/Circular/Circular';
 import TimeColumn from '@/molecules/TimeColumn/TimeColumn';
 import Table from '@/organisms/Table/Table';
@@ -94,16 +94,16 @@ const TimeTable: FC<{}> = () => {
     let subjectName = '';
     Object.keys(state).map(async block => {
       subjectName = await localStorage.getItem(block);
-      console.log(block, subjectName);
+      // console.log(block, subjectName);
       if (subjectName) {
         setState(prevState => {
-          console.log(`---- ${subjectName} prevState ----`, prevState);
-          console.log('---- block, subjectName ----', block, subjectName);
+          // console.log(`---- ${subjectName} prevState ----`, prevState);
+          // console.log('---- block, subjectName ----', block, subjectName);
           const newState = {
             ...prevState,
             [block]: subjectName,
           };
-          console.log(`---- ${subjectName} newState ----`, newState);
+          // console.log(`---- ${subjectName} newState ----`, newState);
 
           return newState;
         });

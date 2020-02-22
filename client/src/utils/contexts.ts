@@ -35,3 +35,21 @@ export const PageContext = createContext<ClassContext>({
   },
   setClass: () => {},
 });
+
+
+type SearchItem = {
+  course_name?: string;
+  block?: string;
+  teacher_name?: string;
+  is_compulsory?: boolean;
+};
+
+type SearchContext = {
+  state: SearchItem;
+  setState: Dispatch<SetStateAction<SearchItem>>;
+};
+
+export const SearchContext = createContext<SearchContext>({
+  state: {},
+  setState: () => {},
+});

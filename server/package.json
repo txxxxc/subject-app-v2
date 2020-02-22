@@ -4,7 +4,7 @@
   "description": "Awesome project developed with TypeORM.",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "dev": "webpack && nodemon dist/server.js",
+    "dev": "yarn build && nodemon",
     "start": "node ./dist/server.js",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
