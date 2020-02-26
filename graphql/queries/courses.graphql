@@ -15,3 +15,12 @@ query searchCoursesByBlock($block: String!) {
     is_compulsory
   }
 }
+
+query searchCourses($course_name: String, $teacher_name: String, $block: String, $is_compulsory: Boolean) {
+  searchCourses(course_name: $course_name, teacher_name: $teacher_name, block: $block, is_compulsory: $is_compulsory) {
+    course_name
+    teacher_name
+    block
+    is_compulsory
+  }
+}

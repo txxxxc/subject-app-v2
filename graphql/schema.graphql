@@ -6,6 +6,7 @@ type Query {
   searchCoursesByTeacher(teacher_name: String!): [Course]
   searchCoursesByBlock(block: String!): [Course]
   searchCoursesByCompulsory: [Course]
+  searchCourses(course_name: String, teacher_name: String, block: String, is_compulsory: Boolean): [Course]
 }
 type User {
   id: ID!

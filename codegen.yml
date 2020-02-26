@@ -15,7 +15,7 @@ generates:
     plugins:
       - typescript
       - typescript-operations
-      - "typescript-react-apollo"
+      - typescript-react-apollo
     config:
       withComponent: false
       withHooks: true

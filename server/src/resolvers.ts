@@ -42,6 +42,41 @@ const Query: QueryResolvers = {
 
     return result || null;
   },
+
+  async searchCourses(_root, args, { courseRepository }) {
+    let result;
+    console.log({args}, Object.keys(args).length)
+
+    if (Object.keys(args).length === 0) {
+      console.log('hello')
+      result =  await courseRepository.find();
+    }
+
+    if (args.course_name) {
+      result = await courseRepository.find({
+        where: { course_name: args.course_name },
+      });
+
+    }
+    if (args.block) {
+      result = await courseRepository.find({
+        where: { block: args.block },
+      });
+    }
+    if (args.teacher_name) {
+      result = await courseRepository.find({
+        where: { teacher_name: args.teacher_name },
+      });
+    }
+    if (args.is_compulsory) {
+      result = await courseRepository.find({
+        where: { is_compulsory: args.is_compulsory },
+      });
+    }
+    console.log(result)
+    return result || null;
+  }
+
 };
 
 export const resolvers: Resolvers = {

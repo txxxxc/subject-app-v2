@@ -30,6 +30,7 @@ export type Query = {
   searchCoursesByTeacher?: Maybe<Array<Maybe<Course>>>,
   searchCoursesByBlock?: Maybe<Array<Maybe<Course>>>,
   searchCoursesByCompulsory?: Maybe<Array<Maybe<Course>>>,
+  searchCourses?: Maybe<Array<Maybe<Course>>>,
 };
 
 
@@ -45,6 +46,14 @@ export type QuerySearchCoursesByTeacherArgs = {
 
 export type QuerySearchCoursesByBlockArgs = {
   block: Scalars['String']
+};
+
+
+export type QuerySearchCoursesArgs = {
+  course_name?: Maybe<Scalars['String']>,
+  teacher_name?: Maybe<Scalars['String']>,
+  block?: Maybe<Scalars['String']>,
+  is_compulsory?: Maybe<Scalars['Boolean']>
 };
 
 export type User = {
@@ -73,6 +82,22 @@ export type SearchCoursesByBlockQueryVariables = {
 export type SearchCoursesByBlockQuery = (
   { __typename?: 'Query' }
   & { searchCoursesByBlock: Maybe<Array<Maybe<(
+    { __typename?: 'Course' }
+    & Pick<Course, 'course_name' | 'teacher_name' | 'block' | 'is_compulsory'>
+  )>>> }
+);
+
+export type SearchCoursesQueryVariables = {
+  course_name?: Maybe<Scalars['String']>,
+  teacher_name?: Maybe<Scalars['String']>,
+  block?: Maybe<Scalars['String']>,
+  is_compulsory?: Maybe<Scalars['Boolean']>
+};
+
+
+export type SearchCoursesQuery = (
+  { __typename?: 'Query' }
+  & { searchCourses: Maybe<Array<Maybe<(
     { __typename?: 'Course' }
     & Pick<Course, 'course_name' | 'teacher_name' | 'block' | 'is_compulsory'>
   )>>> }
@@ -150,3 +175,42 @@ export function useSearchCoursesByBlockLazyQuery(baseOptions?: ApolloReactHooks.
 export type SearchCoursesByBlockQueryHookResult = ReturnType<typeof useSearchCoursesByBlockQuery>;
 export type SearchCoursesByBlockLazyQueryHookResult = ReturnType<typeof useSearchCoursesByBlockLazyQuery>;
 export type SearchCoursesByBlockQueryResult = ApolloReactCommon.QueryResult<SearchCoursesByBlockQuery, SearchCoursesByBlockQueryVariables>;
+export const SearchCoursesDocument = gql`
+    query searchCourses($course_name: String, $teacher_name: String, $block: String, $is_compulsory: Boolean) {
+  searchCourses(course_name: $course_name, teacher_name: $teacher_name, block: $block, is_compulsory: $is_compulsory) {
+    course_name
+    teacher_name
+    block
+    is_compulsory
+  }
+}
+    `;
+
+/**
+ * __useSearchCoursesQuery__
+ *
+ * To run a query within a React component, call `useSearchCoursesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchCoursesQuery({
+ *   variables: {
+ *      course_name: // value for 'course_name'
+ *      teacher_name: // value for 'teacher_name'
+ *      block: // value for 'block'
+ *      is_compulsory: // value for 'is_compulsory'
+ *   },
+ * });
+ */
+export function useSearchCoursesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<SearchCoursesQuery, SearchCoursesQueryVariables>) {
+        return ApolloReactHooks.useQuery<SearchCoursesQuery, SearchCoursesQueryVariables>(SearchCoursesDocument, baseOptions);
+      }
+export function useSearchCoursesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SearchCoursesQuery, SearchCoursesQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<SearchCoursesQuery, SearchCoursesQueryVariables>(SearchCoursesDocument, baseOptions);
+        }
+export type SearchCoursesQueryHookResult = ReturnType<typeof useSearchCoursesQuery>;
+export type SearchCoursesLazyQueryHookResult = ReturnType<typeof useSearchCoursesLazyQuery>;
+export type SearchCoursesQueryResult = ApolloReactCommon.QueryResult<SearchCoursesQuery, SearchCoursesQueryVariables>;

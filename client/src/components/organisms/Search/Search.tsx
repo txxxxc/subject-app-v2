@@ -1,51 +1,47 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { FC, useState } from 'react';
+import React, { FC, useContext } from 'react';
 import styled from 'styled-components';
 import theme from 'utils/theme';
-import { styled as muiStyled } from '@material-ui/core/styles';
-import Typography from '@/atoms/Typography/Typography';
+import { SearchContext } from 'utils/contexts';
+// import { styled as muiStyled } from '@material-ui/core/styles';
+// import Typography from '@/atoms/Typography/Typography';
 import Select, { SelectProps } from '@/molecules/Select/Select';
-import Switch, { SwitchProps } from '@/atoms/Switch/Switch';
+import Switch from '@/atoms/Switch/Switch';
 import Icon from '@/atoms/Icon/Icon';
 
 export interface SearchProps {
   selectItems: SelectProps[];
-  switch: SwitchProps;
   iconOnClose: any;
 }
 
 const SearchComponent: FC<SearchProps> = (props: SearchProps) => {
-  const [currentData, setCurrentData] = useState({
-    subject: '',
-    block: '',
-    teacher: '',
-    isCompulsory: false,
-  });
+  const context = useContext(SearchContext);
 
   const changeCurrentData = (e: any) =>
-    setCurrentData({ ...currentData, [e.target.name]: e.target.value });
+    context.setState({ ...context.state, [e.target.name]: e.target.value });
 
   const onSwitch = () =>
-    setCurrentData({ ...currentData, isCompulsory: !currentData.isCompulsory });
+    context.setState({ ...context.state, is_compulsory: !context.state.is_compulsory });
 
   return (
     <Container>
       <Header>
-        <HeaderTypography text="Filter" fontSize={24} color="white" />
-        <Icon iconName="Search" onClick={props.iconOnClose} color="white" />
+        <SearchButtonContainer>
+          <SearchIcon iconName="Search" onClick={props.iconOnClose} color="white" />
+        </SearchButtonContainer>
       </Header>
       <SearchItems>
         {props.selectItems.map((item, i) => (
           <Select
             inputLabel={item.inputLabel}
             menuItem={item.menuItem}
-            currentItem={currentData[item.category]}
+            currentItem={context.state[item.category] ? context.state[item.category] : ''}
             onChange={changeCurrentData}
             category={item.category}
             key={i}
           />
         ))}
-        <Switch checked={currentData.isCompulsory} onChange={onSwitch} />
+        <Switch checked={context.state.is_compulsory} onChange={onSwitch} />
       </SearchItems>
     </Container>
   );
@@ -56,15 +52,16 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  display: flex;
+  height: 64px;
   background-color: ${theme.palette.primary.main};
+  padding: 8px 24px 12px 0px;
 `;
 
-const HeaderTypography = muiStyled(Typography)({
-  padding: '5px 0 0 15px',
-  flexGrow: 1,
-});
-
+const SearchButtonContainer = styled.div`
+  text-align: right;
+`
+const SearchIcon = styled(Icon)`
+`;
 const SearchItems = styled.div`
   display: flex;
   flex-direction: column;
