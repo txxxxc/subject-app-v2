@@ -20,12 +20,12 @@ const Page: FC<{}> = () => {
     variables: state
   });
 
+
   const [list, setList] = useState([]);
   
   useEffect(() => {
-    (async() => {
-      await getFilteredCourses({ variables: state });
-    })();
+    setList([]);
+    getFilteredCourses({ variables: state })
   }, [state]);
 
   useEffect(() => {
@@ -46,7 +46,6 @@ const Page: FC<{}> = () => {
       console.log('not found');
     }
   }, [data])
-  console.log({list})
   return (
     <CssBaseline>
       <SearchContext.Provider value={{ state: state, setState: setState }}>

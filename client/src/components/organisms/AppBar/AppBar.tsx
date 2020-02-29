@@ -10,17 +10,15 @@ const searchProps: SearchProps = {
   selectItems: [
     {
       inputLabel: '科目',
-      menuItem: ['　', '国語', '数学', '英語'],
+      menuItem: ['なし', '国語', '数学', '英語'],
       currentItem: '',
-      category: 'subject',
-      onChange: () => {},
+      category: 'course_name',
     },
     {
       inputLabel: 'ブロック',
-      menuItem: ['　', 'I_A', 'II_A', 'III_A'],
+      menuItem: ['なし', 'I_A', 'II_A', 'III_A'],
       currentItem: '',
       category: 'block',
-      onChange: () => {},
     },
   ],
   iconOnClose: () => {},
