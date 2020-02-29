@@ -19,7 +19,7 @@
     "dev:codegen": "graphql-codegen --config codegen.yml",
     "dev:codegen:watch": "graphql-codegen --config codegen.yml -w",
     "server": "cd server && yarn start",
-    "build": "cd server && yarn build & cd client && yarn webpack",
+    "build": "cd server && yarn build & cd client && yarn build",
     "start": "NODE_ENV=production yarn server"
   },
   "devDependencies": {
