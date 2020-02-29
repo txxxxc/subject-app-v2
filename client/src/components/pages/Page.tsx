@@ -20,7 +20,6 @@ const Page: FC<{}> = () => {
     variables: state
   });
 
-  console.log({ state })
 
   const [list, setList] = useState([]);
   
