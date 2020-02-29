@@ -45,25 +45,32 @@ const Query: QueryResolvers = {
 
   async searchCourses(_root, args, { courseRepository }) {
     let result;
-    console.log({args}, Object.keys(args).length)
-
+    
     if (Object.keys(args).length === 0) {
-      console.log('hello')
       result =  await courseRepository.find();
     }
 
     if (args.course_name) {
+      if (args.course_name === 'なし') {
+        return;
+      }
       result = await courseRepository.find({
         where: { course_name: args.course_name },
       });
 
     }
-    if (args.block) {
+    if (args.block || args.block === 'なし') {
+      if (args.block === 'なし') {
+        return;
+      }
       result = await courseRepository.find({
         where: { block: args.block },
       });
     }
-    if (args.teacher_name) {
+    if (args.teacher_name || args.teacher_name === 'なし') {
+      if (args.teacher_name=== 'なし') {
+        return;
+      }
       result = await courseRepository.find({
         where: { teacher_name: args.teacher_name },
       });
@@ -73,7 +80,6 @@ const Query: QueryResolvers = {
         where: { is_compulsory: args.is_compulsory },
       });
     }
-    console.log(result)
     return result || null;
   }
 

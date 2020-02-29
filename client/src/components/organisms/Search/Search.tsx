@@ -17,8 +17,11 @@ export interface SearchProps {
 const SearchComponent: FC<SearchProps> = (props: SearchProps) => {
   const context = useContext(SearchContext);
 
-  const changeCurrentData = (e: any) =>
-    context.setState({ ...context.state, [e.target.name]: e.target.value });
+  const changeCurrentData = (e: any) =>{
+    console.log(e.target.name);
+    
+    return context.setState({ ...context.state, [e.target.name]: e.target.value });
+  }
 
   const onSwitch = () =>
     context.setState({ ...context.state, is_compulsory: !context.state.is_compulsory });

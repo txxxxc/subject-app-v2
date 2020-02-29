@@ -20,12 +20,16 @@ const Page: FC<{}> = () => {
     variables: state
   });
 
+  console.log({ state })
+
   const [list, setList] = useState([]);
   
   useEffect(() => {
-    (async() => {
-      await getFilteredCourses({ variables: state });
-    })();
+    setList([]);
+    getFilteredCourses({ variables: state })
+    // (async() => {
+    //   await getFilteredCourses({ variables: state });
+    // })();
   }, [state]);
 
   useEffect(() => {
