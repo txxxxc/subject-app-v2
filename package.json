@@ -20,7 +20,8 @@
     "dev:codegen:watch": "graphql-codegen --config codegen.yml -w",
     "server": "cd server && yarn start",
     "build": "cd server && yarn build && cd client && yarn build",
-    "start": "NODE_ENV=production yarn server"
+    "start": "NODE_ENV=production yarn server",
+    "heroku-prebuild": "yarn install"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.12.2",
